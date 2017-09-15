@@ -9,8 +9,8 @@ class ListItemView extends Component {
     render() {
         return (
             <View style={[
-                (this.props.index == 0) ? styles.marginTop : null,
-                (this.props.index == this.props.data.length - 1) ? styles.marginBottom : null,
+                (this.props.index == 0) ? styles.firstItem : null,
+                (this.props.index == this.props.data.length - 1) ? styles.lastItem : null,
                 {backgroundColor: "white"}
             ]}>
                 {this.props.children}
@@ -20,10 +20,10 @@ class ListItemView extends Component {
 }
 
 const styles = StyleSheet.create({
-    marginTop: {
+    firstItem: {
         paddingTop: 8,
     },
-    marginBottom: {
+    lastItem: {
         paddingBottom: 8,
     },
 })
