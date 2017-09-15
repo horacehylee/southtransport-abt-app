@@ -44,7 +44,6 @@ class Notices extends Component {
                                 </View>
                             </Button>
                             <ListDivider data={this.state.data} index={index} />
-                            {/* {(index != this.state.data.length - 1 ? (<Divider />) : null)} */}
                         </ListItemView>
                     )}
                 />
