@@ -10,8 +10,8 @@ import moment from "moment"
 require("moment/locale/zh-hk")
 import Button from "./../tabBar/Button"
 import isEmpty from "lodash/isEmpty"
-import Divider from "./../../components/Divider"
 import ListViewItem from "./../../components/ListItemView"
+import ListDivider from "./../../components/ListDivider"
 
 checkTimeWithin = hours => inputDateTime => {
     let currentMoment = moment();
@@ -96,7 +96,7 @@ class Notifications extends Component {
                                     </View>
                                 </View>
                             </View>
-                            <Divider />
+                            <ListDivider data={this.state.data} index={index}/>
                         </ListViewItem>
                     )}
                 />

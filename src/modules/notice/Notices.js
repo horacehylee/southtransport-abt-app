@@ -6,8 +6,8 @@ import {
     FlatList,
 } from "react-native"
 import Button from "./../tabBar/Button"
-import Divider from "./../../components/Divider"
 import ListItemView from "./../../components/ListItemView"
+import ListDivider from "./../../components/ListDivider"
 
 class Notices extends Component {
     state = {
@@ -43,7 +43,8 @@ class Notices extends Component {
                                     <Text style={styles.itemTitle}>{item.title}</Text>
                                 </View>
                             </Button>
-                            {(index != this.state.data.length - 1 ? (<Divider />) : null)}
+                            <ListDivider data={this.state.data} index={index} />
+                            {/* {(index != this.state.data.length - 1 ? (<Divider />) : null)} */}
                         </ListItemView>
                     )}
                 />

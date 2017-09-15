@@ -3,7 +3,7 @@ import {
     View,
     StyleSheet,
 } from "react-native"
-import AbtMap from "./../map/map"
+import AbtMap from "./../map/Map"
 import TunnelTime from "./../tunnelTime/TunnelTime"
 
 class RoadCondition extends Component {

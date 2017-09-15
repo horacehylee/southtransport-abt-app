@@ -54,7 +54,6 @@ class RoadPhotos extends Component {
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>{item.title}</Text>
                         </View>
-                        {/* <View style={styles.divider} /> */}
                         <View style={styles.roadPhotoContainer}>
                             <Image style={styles.roadPhoto} source={{ uri: item.imgUrl + "?r=" + Math.random() }} />
                         </View>

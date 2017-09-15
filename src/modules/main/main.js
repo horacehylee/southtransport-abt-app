@@ -24,7 +24,7 @@ export class Main extends Component {
                 <View style={styles.contentContainer}>
                     <Header />
                     <ScrollableTabView
-                        initialPage={1}
+                        initialPage={2}
                         renderTabBar={
                             () => (<DefaultTabBar
                                 textStyle={styles.tabButtonText}
@@ -33,10 +33,10 @@ export class Main extends Component {
                                 underlineStyle={{ height: 2, backgroundColor: "#157cbe" }} />)
                         }
                     >
-                        <RoadCondition tabLabel="路況" style={[styles.tabView]} />
-                        <RoadPhotos tabLabel="實景" style={styles.tabView} />
-                        <Notices tabLabel="消息" style={styles.tabView} />
-                        <Notifications tabLabel="通知" style={styles.tabView} />
+                        <RoadCondition tabLabel="路況" />
+                        <RoadPhotos tabLabel="實景" />
+                        <Notices tabLabel="消息" />
+                        <Notifications tabLabel="通知" />
                     </ScrollableTabView>
                 </View>
             </View>
