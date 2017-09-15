@@ -5,6 +5,7 @@ import {
     Text,
     View,
     TouchableOpacity,
+    Animated,
 } from 'react-native';
 import MapView from 'react-native-maps';
 
@@ -33,11 +34,6 @@ class AbtMap extends Component {
 
     withinRange(region, abtRegion) {
         inRange = true;
-        latDiff = Math.abs(region.latitude - abtRegion.latitude)
-        console.log("latDiff", latDiff)
-        lngDiff = Math.abs(region.longitude - abtRegion.longitude)
-        console.log("lngDiff", lngDiff)
-
         inRange &= Math.abs(region.latitude - abtRegion.latitude) <= range
         inRange &= Math.abs(region.longitude - abtRegion.longitude) <= range
         return inRange
@@ -51,7 +47,7 @@ class AbtMap extends Component {
                         onPress={() => this.reset()}
                         style={[styles.bubble, styles.button]}
                     >
-                        <Text>Reset</Text>
+                        <Text>返回香隧</Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -96,7 +92,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     bubble: {
-        backgroundColor: 'rgba(255,255,255,0.8)',
+        backgroundColor: 'rgba(255,255,255,0.7)',
         paddingHorizontal: 18,
         paddingVertical: 12,
         borderRadius: 20,

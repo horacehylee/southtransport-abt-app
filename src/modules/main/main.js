@@ -22,11 +22,18 @@ export class Main extends Component {
                     <Header />
                     <ScrollableTabView
                         initialPage={0}
-                        renderTabBar={() => <DefaultTabBar textStyle={styles.tabButtonText} backgroundColor={"white"} underlineStyle={{ height: 2 }} />}>
-                        <RoadCondition tabLabel="路況" style={styles.tabView} />
-                        <ScrollView tabLabel="快拍" style={styles.tabView}>
+                        renderTabBar={
+                            () => (<DefaultTabBar 
+                                textStyle={styles.tabButtonText} 
+                                activeTextColor={"#157cbe"} 
+                                backgroundColor={"white"} 
+                                underlineStyle={{ height: 2, backgroundColor: "#157cbe" }} />)
+                        }
+                    >
+                        <RoadCondition tabLabel="路況" style={[styles.tabView, styles.noPadding]} />
+                        <ScrollView tabLabel="實景" style={styles.tabView}>
                             <View style={styles.card}>
-                                <Text>快拍</Text>
+                                <Text>實景</Text>
                             </View>
                         </ScrollView>
                         <ScrollView tabLabel="消息" style={styles.tabView}>
@@ -54,6 +61,9 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         backgroundColor: 'rgba(0,0,0,0.01)',
+    },
+    noPadding: {
+        padding: 0,
     },
     card: {
         borderWidth: 1,
