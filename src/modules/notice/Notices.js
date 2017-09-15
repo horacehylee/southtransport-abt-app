@@ -41,7 +41,7 @@ class Notices extends Component {
                                     <Text style={styles.itemTitle}>{item.title}</Text>
                                 </View>
                             </Button>
-                            {/* <View style={styles.divider} /> */}
+                            <View style={styles.divider} />
                         </View>
                     )}
                 />
@@ -67,6 +67,8 @@ const styles = StyleSheet.create({
     divider: {
         borderBottomColor: 'rgba(0,0,0,0.1)',
         borderBottomWidth: 1,
+        marginHorizontal: 8,
+        backgroundColor: "white"
     },
 })
 
