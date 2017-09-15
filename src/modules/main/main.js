@@ -11,6 +11,7 @@ import Header from "./../header/Header"
 import RoadCondition from "./RoadCondition"
 import RoadPhotos from "./../roadPhoto/RoadPhotos"
 import Notices from "./../notice/Notices"
+import Notifications from "./../notification/Notifications"
 
 export class Main extends Component {
     static navigatorStyle = {
@@ -23,7 +24,7 @@ export class Main extends Component {
                 <View style={styles.contentContainer}>
                     <Header />
                     <ScrollableTabView
-                        initialPage={2}
+                        initialPage={1}
                         renderTabBar={
                             () => (<DefaultTabBar
                                 textStyle={styles.tabButtonText}
@@ -35,11 +36,7 @@ export class Main extends Component {
                         <RoadCondition tabLabel="路況" style={[styles.tabView]} />
                         <RoadPhotos tabLabel="實景" style={styles.tabView} />
                         <Notices tabLabel="消息" style={styles.tabView} />
-                        <ScrollView tabLabel="通知" style={styles.tabView}>
-                            <View style={styles.card}>
-                                <Text>通知</Text>
-                            </View>
-                        </ScrollView>
+                        <Notifications tabLabel="通知" style={styles.tabView} />
                     </ScrollableTabView>
                 </View>
             </View>

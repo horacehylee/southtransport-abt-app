@@ -6,41 +6,61 @@ import {
     StyleSheet,
     ScrollView,
     Dimensions,
+    FlatList,
+    RefreshControl,
 } from "react-native"
 const win = Dimensions.get('window');
 
 class RoadPhotos extends Component {
     state = {
+        refreshing: false,
         roadPhotos: [
             {
+                key: "1",
                 title: "香港仔隧道灣仔入口",
                 imgUrl: "http://tdcctv.data.one.gov.hk/H210F.JPG"
             },
             {
+                key: "2",
                 title: "香港仔隧道香港仔入口",
                 imgUrl: "http://tdcctv.data.one.gov.hk/H421F.JPG"
             },
             {
+                key: "3",
                 title: "黃竹坑道近香港仔隧道",
                 imgUrl: "http://tdcctv.data.one.gov.hk/H401F.JPG"
             },
         ]
     }
+
+    refresh() {
+
+    }
+
     render() {
         return (
-            <ScrollView>
-                {this.state.roadPhotos.map((roadPhoto, i) => (
-                    <View key={i} style={styles.card}>
+            <FlatList
+                refreshControl={
+                    <RefreshControl
+                        refreshing={this.state.refreshing}
+                        onRefresh={this.refresh}
+                        colors={["#157cbe"]}
+                    />
+                }
+                data={this.state.roadPhotos}
+                renderItem={({ item }) => (
+                    <View style={styles.card}>
                         <View style={styles.titleContainer}>
-                            <Text style={styles.title}>{roadPhoto.title}</Text>
+                            <Text style={styles.title}>{item.title}</Text>
                         </View>
                         {/* <View style={styles.divider} /> */}
                         <View style={styles.roadPhotoContainer}>
-                            <Image style={styles.roadPhoto} source={{ uri: roadPhoto.imgUrl }} />
+                            <Image style={styles.roadPhoto} source={{ uri: item.imgUrl + "?r=" + Math.random() }} />
                         </View>
                     </View>
-                ))}
-            </ScrollView>
+                )}
+            >
+            </FlatList>
         );
     }
 }
@@ -67,7 +87,6 @@ const styles = StyleSheet.create({
     },
     roadPhoto: {
         height: (win.width - 16) / 4 * 3,
-        // width: 300,
     },
     card: {
         borderWidth: 1,

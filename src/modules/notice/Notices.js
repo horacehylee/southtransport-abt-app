@@ -52,7 +52,8 @@ class Notices extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
+        backgroundColor: "white",
     },
     item: {
         height: 64,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     divider: {
         borderBottomColor: 'rgba(0,0,0,0.1)',
         borderBottomWidth: 1,
-        marginHorizontal: 8,
+        marginHorizontal: 12,
         backgroundColor: "white"
     },
 })

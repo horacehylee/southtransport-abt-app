@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         padding: 4,
-        borderRadius: 5,
+        borderRadius: 3,
     },
     time: {
         fontWeight: "bold",

@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderColor: 'rgba(0,0,0,0.1)',
         paddingLeft: 16,
-        // paddingRight: 16,
+        paddingRight: 8,
         // padding: 16,
         // paddingTop: 8,
         // paddingBottom: 24,
@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     },
     tunnelTimeContainer: {
         padding: 8,
+        paddingHorizontal: 6,
     },
     journeyTimesContainer: {
         flex: 1,
