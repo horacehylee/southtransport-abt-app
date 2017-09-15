@@ -9,6 +9,8 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import DefaultTabBar from "./../tabBar/DefaultTabBar"
 import Header from "./../header/Header"
 import RoadCondition from "./RoadCondition"
+import RoadPhotos from "./../roadPhoto/RoadPhotos"
+import Notices from "./../notice/Notices"
 
 export class Main extends Component {
     static navigatorStyle = {
@@ -21,26 +23,18 @@ export class Main extends Component {
                 <View style={styles.contentContainer}>
                     <Header />
                     <ScrollableTabView
-                        initialPage={0}
+                        initialPage={2}
                         renderTabBar={
-                            () => (<DefaultTabBar 
-                                textStyle={styles.tabButtonText} 
-                                activeTextColor={"#157cbe"} 
-                                backgroundColor={"white"} 
+                            () => (<DefaultTabBar
+                                textStyle={styles.tabButtonText}
+                                activeTextColor={"#157cbe"}
+                                backgroundColor={"white"}
                                 underlineStyle={{ height: 2, backgroundColor: "#157cbe" }} />)
                         }
                     >
-                        <RoadCondition tabLabel="路況" style={[styles.tabView, styles.noPadding]} />
-                        <ScrollView tabLabel="實景" style={styles.tabView}>
-                            <View style={styles.card}>
-                                <Text>實景</Text>
-                            </View>
-                        </ScrollView>
-                        <ScrollView tabLabel="消息" style={styles.tabView}>
-                            <View style={styles.card}>
-                                <Text>消息</Text>
-                            </View>
-                        </ScrollView>
+                        <RoadCondition tabLabel="路況" style={[styles.tabView]} />
+                        <RoadPhotos tabLabel="實景" style={styles.tabView} />
+                        <Notices tabLabel="消息" style={styles.tabView} />
                         <ScrollView tabLabel="通知" style={styles.tabView}>
                             <View style={styles.card}>
                                 <Text>通知</Text>
@@ -59,7 +53,7 @@ const styles = StyleSheet.create({
     },
     tabView: {
         flex: 1,
-        padding: 10,
+        // padding: 10,
         backgroundColor: 'rgba(0,0,0,0.01)',
     },
     noPadding: {
