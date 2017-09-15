@@ -6,6 +6,8 @@ import {
     FlatList,
 } from "react-native"
 import Button from "./../tabBar/Button"
+import Divider from "./../../components/Divider"
+import ListItemView from "./../../components/ListItemView"
 
 class Notices extends Component {
     state = {
@@ -34,15 +36,15 @@ class Notices extends Component {
             <View style={styles.container}>
                 <FlatList
                     data={this.state.data}
-                    renderItem={({ item }) => (
-                        <View>
+                    renderItem={({ item, index }) => (
+                        <ListItemView data={this.state.data} index={index}>
                             <Button>
                                 <View style={styles.item}>
                                     <Text style={styles.itemTitle}>{item.title}</Text>
                                 </View>
                             </Button>
-                            <View style={styles.divider} />
-                        </View>
+                            {(index != this.state.data.length - 1 ? (<Divider />) : null)}
+                        </ListItemView>
                     )}
                 />
             </View>
@@ -51,9 +53,15 @@ class Notices extends Component {
 }
 
 const styles = StyleSheet.create({
+    marginTop: {
+        marginTop: 8,
+    },
+    marginBottom: {
+        marginBottom: 8,
+    },
     container: {
         // flex: 1,
-        backgroundColor: "white",
+        // backgroundColor: "white",
     },
     item: {
         height: 64,
@@ -64,12 +72,6 @@ const styles = StyleSheet.create({
     itemTitle: {
         fontSize: 16,
         color: "black",
-    },
-    divider: {
-        borderBottomColor: 'rgba(0,0,0,0.1)',
-        borderBottomWidth: 1,
-        marginHorizontal: 12,
-        backgroundColor: "white"
     },
 })
 

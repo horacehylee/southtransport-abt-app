@@ -40,6 +40,7 @@ class RoadPhotos extends Component {
     render() {
         return (
             <FlatList
+                style={styles.list}
                 refreshControl={
                     <RefreshControl
                         refreshing={this.state.refreshing}
@@ -48,8 +49,8 @@ class RoadPhotos extends Component {
                     />
                 }
                 data={this.state.roadPhotos}
-                renderItem={({ item }) => (
-                    <View style={styles.card}>
+                renderItem={({ item, index }) => (
+                    <View style={[styles.card, (index == this.state.roadPhotos.length - 1) ? styles.marginBottom : null]}>
                         <View style={styles.titleContainer}>
                             <Text style={styles.title}>{item.title}</Text>
                         </View>
@@ -92,7 +93,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         backgroundColor: '#fff',
         borderColor: 'rgba(0,0,0,0.1)',
-        margin: 8,
+        marginHorizontal: 8,
+        marginTop: 8,
         // height: 150,
         // marginBottom: 16,
         // padding: 15,
@@ -104,6 +106,11 @@ const styles = StyleSheet.create({
         shadowRadius: 3,
         borderRadius: 3,
     },
+    marginBottom: {
+        marginBottom: 8,
+    },
+    list: {
+    }
 })
 
 export default RoadPhotos;

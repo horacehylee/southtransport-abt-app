@@ -73,5 +73,8 @@ const styles = StyleSheet.create({
     },
     noFlex: {
         flex: 0
+    },
+    padding: {
+        marginBottom: 8,
     }
 });

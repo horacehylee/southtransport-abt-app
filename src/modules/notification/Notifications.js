@@ -10,6 +10,8 @@ import moment from "moment"
 require("moment/locale/zh-hk")
 import Button from "./../tabBar/Button"
 import isEmpty from "lodash/isEmpty"
+import Divider from "./../../components/Divider"
+import ListViewItem from "./../../components/ListItemView"
 
 checkTimeWithin = hours => inputDateTime => {
     let currentMoment = moment();
@@ -82,8 +84,8 @@ class Notifications extends Component {
                         />
                     }
                     data={this.state.data}
-                    renderItem={({ item }) => (
-                        <View>
+                    renderItem={({ item, index }) => (
+                        <ListViewItem data={this.state.data} index={index}>
                             <View style={[styles.item]}>
                                 <View style={styles.contentContainer}>
                                     <Text style={styles.itemTitle}>{item.title}</Text>
@@ -94,10 +96,8 @@ class Notifications extends Component {
                                     </View>
                                 </View>
                             </View>
-                            <View style={styles.dividerContainer}>
-                                <View style={styles.divider} />
-                            </View>
-                        </View>
+                            <Divider />
+                        </ListViewItem>
                     )}
                 />
             </View>
@@ -136,14 +136,6 @@ const styles = StyleSheet.create({
     itemDate: {
         marginTop: 8,
         fontSize: 14,
-    },
-    dividerContainer: {
-        backgroundColor: "white",
-    },
-    divider: {
-        borderBottomColor: 'rgba(0,0,0,0.1)',
-        borderBottomWidth: 1,
-        marginHorizontal: 12,
     },
 })
 
