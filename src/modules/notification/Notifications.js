@@ -6,7 +6,7 @@ import {
     FlatList,
     RefreshControl,
 } from 'react-native';
-import moment from "moment"
+import moment from "moment-timezone"
 require("moment/locale/zh-hk")
 import Button from "./../tabBar/Button"
 import isEmpty from "lodash/isEmpty"
@@ -15,13 +15,13 @@ import ListDivider from "./../../components/ListDivider"
 import { Theme } from "./../../theme"
 import renderIf from "./../../utils/renderIf"
 
-checkTimeWithin = hours => inputDateTime => {
+const checkTimeWithin = hours => inputDateTime => {
     let currentMoment = moment();
     let inputMoment = moment(inputDateTime);
     return currentMoment.diff(inputDateTime, 'h') <= hours;
 }
 
-checkTimeWithin24Hours = checkTimeWithin(24)
+const checkTimeWithin12Hours = checkTimeWithin(12)
 
 class Notifications extends Component {
     state = {
@@ -64,9 +64,9 @@ class Notifications extends Component {
     }
 
     getItemDateString(item) {
-        let itemDateTime = moment.utc(item.createDate)
+        let itemDateTime = moment(item.createDate).tz("Asia/Shanghai")
         let timeFormat = "ah時mm分"
-        if (checkTimeWithin24Hours(itemDateTime)) {
+        if (checkTimeWithin12Hours(itemDateTime)) {
             return `${itemDateTime.fromNow()} - ${itemDateTime.format(timeFormat)}`
         } else {
             return itemDateTime.format(`YYYY年MoDo - ${timeFormat}`)
@@ -90,7 +90,7 @@ class Notifications extends Component {
                             <View style={[styles.item]}>
                                 <View style={styles.contentContainer}>
                                     {renderIf(!isEmpty(item.title),
-                                        <Text style={[styles.itemTitle, { color: Theme.primary }]}>
+                                        <Text style={[styles.itemTitle]}>
                                             {item.title}
                                         </Text>
                                     )}
@@ -136,6 +136,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "black",
         fontWeight: "bold",
+        color: Theme.primary,
     },
     itemDetail: {
         marginTop: 8,

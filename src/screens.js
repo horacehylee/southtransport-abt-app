@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Navigation } from "react-native-navigation"
 import { Main } from "./modules/main/Main"
-import Theme from "./theme"
+import { Theme } from "./theme"
 import TransportDepartmentNews from "./screens/TransportDepartmentNews"
 import RTHKNews from "./screens/RTHKNews"
 import CommericalRadioNews from "./screens/CommericalRadioNews"
 
 const styles = {
-    statusBarColor: "#00508d",
-    navBarBackgroundColor: "#157cbe",
+    statusBarColor: Theme.primaryDark,
+    navBarBackgroundColor: Theme.primary,
     navBarHeight: 56,
     navBarButtonColor: "white",
     navBarTextColor: "white",
