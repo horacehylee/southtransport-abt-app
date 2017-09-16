@@ -8,7 +8,7 @@
     "my-serve": "node %npm_package_config_cli% run-android",
     "log": "adb logcat | grep ReactNativeJS",
     "clean": "cd android && gradlew clean --console plain",
-    "pack": "cd android && gradlew assembleRelease --console plain && start android\\app\\build\\outputs\\apk"
+    "pack": "cd android && gradlew assembleRelease --console plain && start app\\build\\outputs\\apk"
   },
   "config": {
     "cli": "node_modules/react-native/local-cli/cli.js"

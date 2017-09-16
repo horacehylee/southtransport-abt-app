@@ -105,12 +105,12 @@ class TunnelTime extends Component {
             return (
                 <View style={styles.horizontal}>
                     {this.state.tunnelJourneyTimes.map((tunnelJourneyTime) => (
-                        <Button key={tunnelJourneyTime.key}>
-                            <View style={[styles.horizontal, styles.tunnelTimeContainer]}>
-                                <TunnelTimeTitle title={tunnelJourneyTime.name} />
-                                <TunnelTimeDisplay time={tunnelJourneyTime.time} color={tunnelJourneyTime.color} />
-                            </View>
-                        </Button>
+                        <View key={tunnelJourneyTime.key} style={[styles.horizontal, styles.tunnelTimeContainer]}>
+                            {/* <Button key={tunnelJourneyTime.key}> */}
+                            <TunnelTimeTitle title={tunnelJourneyTime.name} />
+                            <TunnelTimeDisplay time={tunnelJourneyTime.time} color={tunnelJourneyTime.color} />
+                            {/* </Button> */}
+                        </View>
                     ))}
                 </View>
             )
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title: {
-        fontSize: 16,
+        fontSize: 14,
         color: "black",
     },
     captureTime: {
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     },
     tunnelTimeContainer: {
         padding: 8,
-        paddingHorizontal: 6,
+        paddingHorizontal: 2,
     },
     journeyTimesContainer: {
         flex: 1,
