@@ -25,13 +25,13 @@ export class Main extends Component {
                 <View style={styles.contentContainer}>
                     <Header />
                     <ScrollableTabView
-                        initialPage={2}
+                        initialPage={0}
                         renderTabBar={
                             () => (<DefaultTabBar
                                 textStyle={styles.tabButtonText}
                                 activeTextColor={Theme.primary}
                                 backgroundColor={"white"}
-                                underlineStyle={{ height: 2, backgroundColor: Theme.primary }} />)
+                                underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
                         }
                     >
                         <RoadCondition tabLabel="路況" />

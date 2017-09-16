@@ -81,7 +81,7 @@ class Notifications extends Component {
                         <RefreshControl
                             refreshing={this.state.refreshing}
                             onRefresh={this.refresh}
-                            colors={["#157cbe"]}
+                            colors={[Theme.primary]}
                         />
                     }
                     data={this.state.data}
@@ -90,10 +90,14 @@ class Notifications extends Component {
                             <View style={[styles.item]}>
                                 <View style={styles.contentContainer}>
                                     {renderIf(!isEmpty(item.title),
-                                        <Text style={[styles.itemTitle, { color: Theme.primary }]}>{item.title}</Text>
+                                        <Text style={[styles.itemTitle, { color: Theme.primary }]}>
+                                            {item.title}
+                                        </Text>
                                     )}
                                     {renderIf(!isEmpty(item.details),
-                                        <Text style={styles.itemDetail}>{item.details}</Text>
+                                        <Text style={[styles.itemDetail, { color: "black" }]}>
+                                            {item.details}
+                                        </Text>
                                     )}
                                     <View style={{}}>
                                         <Text style={styles.itemDate}>{this.getItemDateString(item)}</Text>
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     contentContainer: {
-        
+
     },
     itemTitle: {
         fontSize: 16,
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
     itemDetail: {
         marginTop: 8,
         fontSize: 14,
-        color: "black",
+        // color: "black",
     },
     itemDate: {
         marginTop: 8,
