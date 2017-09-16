@@ -31,7 +31,7 @@ class RTHKNews extends Component {
                 console.error("Parse XML error", err)
                 return
             }
-            console.log("Parse XML result", result)
+            // console.log("Parse XML result", result)
             this.parseNews(result)
         })
     }
@@ -86,7 +86,6 @@ const styles = StyleSheet.create({
 export default RTHKNews;
 
 //  http://rthk9.rthk.hk/apps/news/c_traffic_news.xml
-
 const xml = `
 <?xml version="1.0" encoding="UTF-8"?>
 <channel>

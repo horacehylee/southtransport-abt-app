@@ -47,7 +47,9 @@ class AbtMap extends Component {
                         onPress={() => this.reset()}
                         style={[styles.bubble, styles.button]}
                     >
-                        <Text>返回香隧</Text>
+                        <Text>
+                            {"返回香隧"}
+                        </Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
     },
     bubble: {
-        backgroundColor: 'rgba(255,255,255,0.7)',
+        backgroundColor: 'rgba(255,255,255,0.9)',
         paddingHorizontal: 18,
         paddingVertical: 12,
         borderRadius: 20,
