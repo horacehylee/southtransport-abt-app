@@ -25,10 +25,12 @@ class Notices extends Component {
             {
                 key: 2,
                 title: "香港電台交通消息",
+                screen: "abt.rthkNews"
             },
             {
                 key: 3,
                 title: "商業電台交通消息",
+                screen: "abt.commericalRadioNews"
             }
         ],
     }
@@ -40,6 +42,8 @@ class Notices extends Component {
         
         this.props.navigator.push({
             screen: item.screen,
+            title: item.title,
+            animationType: "fade",
         })
     }
 

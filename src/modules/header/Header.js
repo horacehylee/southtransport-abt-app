@@ -19,17 +19,19 @@ class Header extends Component {
             <View style={styles.header}>
                 <View style={styles.container}>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.title}>香隧即時睇</Text>
+                        <Text style={styles.title}>
+                            {"香隧即時睇"}
+                        </Text>
                     </View>
                     <View style={styles.rightContainer}>
                         <Button>
                             <View style={styles.buttonContainer}>
-                                <Icon name="timetable" style={styles.button}/>
+                                <Icon name="timetable" style={styles.button} />
                             </View>
                         </Button>
                         <Button>
                             <View style={styles.buttonContainer}>
-                                <Icon name="facebook-box" style={styles.button}/>
+                                <Icon name="facebook-box" style={styles.button} />
                             </View>
                         </Button>
                     </View>
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         color: "white",
-        fontWeight: "bold",
+        // fontWeight: "bold",
     },
     rightContainer: {
         flex: 1,

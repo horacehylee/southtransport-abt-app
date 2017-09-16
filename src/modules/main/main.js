@@ -26,40 +26,26 @@ export class Main extends Component {
         navBarHidden: true,
     };
 
-    componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                delayShowScrollTableView: true
-            });
-        }, 500);
-    }
-
     render() {
         return (
             <View style={styles.contentContainer}>
                 <View style={styles.contentContainer}>
                     <Header />
-                    {this.state.delayShowScrollTableView ? (
-                        <ScrollableTabView
-                            initialPage={0}
-                            renderTabBar={
-                                () => (<DefaultTabBar
-                                    textStyle={styles.tabButtonText}
-                                    activeTextColor={Theme.primary}
-                                    backgroundColor={"white"}
-                                    underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
-                            }
-                        >
-                            <RoadCondition tabLabel="路況" {...this.props} />
-                            <RoadPhotos tabLabel="實景" {...this.props} />
-                            <Notices tabLabel="消息" {...this.props} />
-                            <Notifications tabLabel="通知" {...this.props} />
-                        </ScrollableTabView>
-                    ) : (
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
-                                <ActivityIndicator animating={true} color='#ccc' />
-                            </View>
-                        )}
+                    <ScrollableTabView
+                        initialPage={0}
+                        renderTabBar={
+                            () => (<DefaultTabBar
+                                textStyle={styles.tabButtonText}
+                                activeTextColor={Theme.primary}
+                                backgroundColor={"white"}
+                                underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
+                        }
+                    >
+                        <RoadCondition tabLabel="路況" {...this.props} />
+                        <RoadPhotos tabLabel="實景" {...this.props} />
+                        <Notices tabLabel="消息" {...this.props} />
+                        <Notifications tabLabel="通知" {...this.props} />
+                    </ScrollableTabView>
                 </View>
             </View >
         )

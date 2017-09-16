@@ -5,7 +5,7 @@ import {
     StyleSheet,
  } from 'react-native';
 
- class TransportDepartmentNews extends Component {
+ class RTHKNews extends Component {
      state = {  }
      render() {
          return (
@@ -23,4 +23,4 @@ import {
     }
  })
  
- export default TransportDepartmentNews;
+ export default RTHKNews;
