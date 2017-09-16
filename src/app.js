@@ -8,6 +8,6 @@ registerScreens(null, null);
 
 Navigation.startSingleScreenApp({
   screen: {
-    screen: 'abt.commericalRadioNews', // unique ID registered with Navigation.registerScreen
+    screen: 'abt.main', // unique ID registered with Navigation.registerScreen
   },
 })

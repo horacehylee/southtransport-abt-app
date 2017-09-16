@@ -39,7 +39,7 @@ class Notices extends Component {
         if (isEmpty(item.screen))
             return
 
-        
+
         this.props.navigator.push({
             screen: item.screen,
             title: item.title,
@@ -59,7 +59,6 @@ class Notices extends Component {
                                     <Text style={styles.itemTitle}>{item.title}</Text>
                                 </View>
                             </Button>
-                            <ListDivider data={this.state.data} index={index} />
                         </ListItemView>
                     )}
                 />

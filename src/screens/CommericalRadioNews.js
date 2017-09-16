@@ -10,24 +10,14 @@ import moment from "moment-timezone"
 require("moment/locale/zh-hk")
 import { parseString } from "react-native-xml2js"
 import ListItemView from "./../components/ListItemView"
-import ListDivider from "./../components/ListDivider"
 import { Theme } from "./../theme"
-import isEmpty from "lodash/isEmpty"
-import renderIf from "./../utils/renderIf"
+import ListItem from "./../components/ListItem"
 
 const mapNodeToDateTime = (node) => {
 	let date = node.$.date
 	let time = node.$.time
 	return moment(`${date}T${time}`).tz("Asia/Shanghai")
 }
-
-const checkTimeWithin = hours => inputDateTime => {
-	let currentMoment = moment();
-	let inputMoment = moment(inputDateTime);
-	return currentMoment.diff(inputDateTime, 'h') <= hours;
-}
-
-const checkTimeWithin12Hours = checkTimeWithin(12)
 
 class CommericalRadioNews extends Component {
 	state = {
@@ -40,7 +30,7 @@ class CommericalRadioNews extends Component {
 				console.error("Parse XML error", err)
 				return
 			}
-			console.log("Parse XML result", result)
+			// console.log("Parse XML result", result)
 			this.parseNews(result)
 		})
 	}
@@ -60,23 +50,14 @@ class CommericalRadioNews extends Component {
 		})
 	}
 
-	getItemDateString(date) {
-		let timeFormat = "ah時mm分"
-		if (checkTimeWithin12Hours(date)) {
-			return `${date.fromNow()} - ${date.format(timeFormat)}`
-		} else {
-			return date.format(`YYYY年MoDo - ${timeFormat}`)
-		}
-	}
-
 	refresh() {
 
 	}
 
 	render() {
 		return (
-			<View style={styles.container}>
-				<FlatList style={styles.list}
+			<View>
+				<FlatList
 					refreshControl={
 						<RefreshControl
 							refreshing={this.state.refreshing}
@@ -87,24 +68,11 @@ class CommericalRadioNews extends Component {
 					data={this.state.news}
 					renderItem={({ item, index }) => (
 						<ListItemView data={this.state.news} index={index}>
-							<View style={[styles.item]}>
-								<View style={styles.contentContainer}>
-									{renderIf(!isEmpty(item.title),
-										<Text style={[styles.itemTitle]}>
-											{item.title}
-										</Text>
-									)}
-									{renderIf(!isEmpty(item.details),
-										<Text style={[styles.itemDetail, { color: "black" }]}>
-											{item.details}
-										</Text>
-									)}
-									<View style={{}}>
-										<Text style={styles.itemDate}>{this.getItemDateString(item.date)}</Text>
-									</View>
-								</View>
-							</View>
-							<ListDivider data={this.state.news} index={index} />
+							<ListItem
+								title={item.title}
+								details={item.details}
+								date={item.date}
+							/>
 						</ListItemView>
 					)}
 				/>
@@ -114,35 +82,6 @@ class CommericalRadioNews extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "white",
-	},
-	item: {
-		// minHeight: 72,
-		backgroundColor: "white",
-		paddingHorizontal: 16,
-		paddingVertical: 16,
-		justifyContent: "center",
-	},
-	contentContainer: {
-
-	},
-	itemTitle: {
-		fontSize: 16,
-		color: "black",
-		fontWeight: "bold",
-		color: Theme.primary,
-	},
-	itemDetail: {
-		marginTop: 8,
-		fontSize: 14,
-		// color: "black",
-	},
-	itemDate: {
-		marginTop: 8,
-		fontSize: 14,
-	},
 })
 
 export default CommericalRadioNews;

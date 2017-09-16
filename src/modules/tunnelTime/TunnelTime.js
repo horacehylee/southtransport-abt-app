@@ -64,7 +64,7 @@ class TunnelTime extends Component {
                 console.error("Parse XML error", err)
                 return
             }
-            console.log("Parse XML result", result)
+            // console.log("Parse XML result", result)
             this.parseJourneyTimeData(result)
         })
     }

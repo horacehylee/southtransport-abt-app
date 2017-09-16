@@ -10,17 +10,9 @@ import moment from "moment-timezone"
 require("moment/locale/zh-hk")
 import { parseString } from "react-native-xml2js"
 import ListItemView from "./../components/ListItemView"
-import ListDivider from "./../components/ListDivider"
 import { Theme } from "./../theme"
+import ListItem from "./../components/ListItem"
 import isEmpty from "lodash/isEmpty"
-
-const checkTimeWithin = hours => inputDateTime => {
-    let currentMoment = moment();
-    let inputMoment = moment(inputDateTime);
-    return currentMoment.diff(inputDateTime, 'h') <= hours;
-}
-
-const checkTimeWithin12Hours = checkTimeWithin(12)
 
 class TransportDepartmentNews extends Component {
     state = {
@@ -59,20 +51,10 @@ class TransportDepartmentNews extends Component {
 
     }
 
-    getItemDateString(item) {
-        let itemDateTime = moment(item.date, "YYYY/M/D a HH:mm:ss").tz("Asia/Shanghai")
-        let timeFormat = "ah時mm分"
-        if (checkTimeWithin12Hours(itemDateTime)) {
-            return `${itemDateTime.fromNow()} - ${itemDateTime.format(timeFormat)}`
-        } else {
-            return itemDateTime.format(`YYYY年MoDo - ${timeFormat}`)
-        }
-    }
-
     render() {
         return (
-            <View style={styles.container}>
-                <FlatList style={styles.list}
+            <View>
+                <FlatList
                     refreshControl={
                         <RefreshControl
                             refreshing={this.state.refreshing}
@@ -83,15 +65,11 @@ class TransportDepartmentNews extends Component {
                     data={this.state.messages}
                     renderItem={({ item, index }) => (
                         <ListItemView data={this.state.messages} index={index}>
-                            <View style={[styles.item]}>
-                                <View style={styles.contentContainer}>
-                                    <Text style={[styles.itemDetail, { color: "black" }]}>
-                                        {item.details}
-                                    </Text>
-                                    <Text style={styles.itemDate}>{this.getItemDateString(item)}</Text>
-                                </View>
-                            </View>
-                            <ListDivider data={this.state.messages} index={index} />
+                            <ListItem 
+                                details={item.details}
+                                detailsStyle={{color: "black", fontSize: 16,}}
+                                date={moment(item.date, "YYYY/M/D a HH:mm:ss").tz("Asia/Shanghai")}
+                            />
                         </ListItemView>
                     )}
                 />
@@ -101,34 +79,6 @@ class TransportDepartmentNews extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-    },
-    item: {
-        // minHeight: 72,
-        backgroundColor: "white",
-        paddingHorizontal: 16,
-        paddingVertical: 16,
-        justifyContent: "center",
-    },
-    contentContainer: {
-
-    },
-    itemTitle: {
-        fontSize: 16,
-        color: "black",
-        fontWeight: "bold",
-    },
-    itemDetail: {
-        marginTop: 8,
-        fontSize: 14,
-        // color: "black",
-    },
-    itemDate: {
-        marginTop: 8,
-        fontSize: 14,
-    },
 })
 
 export default TransportDepartmentNews;
