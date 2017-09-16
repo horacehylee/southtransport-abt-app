@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigation } from "react-native-navigation"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import { registerScreens } from "./screens"
+import { Theme } from "./theme"
 
 registerScreens(null, null);
 
@@ -9,7 +10,7 @@ Navigation.startSingleScreenApp({
   screen: {
     screen: 'abt.main', // unique ID registered with Navigation.registerScreen
     navigatorStyle: {
-      statusBarColor: "#00508d"
+      statusBarColor: Theme.primaryDark,
     }, // override the navigator style for the screen, see "Styling the navigator" below (optional)
     navigatorButtons: {} // override the nav buttons for the screen, see "Adding buttons to the navigator" below (optional)
   },

@@ -12,6 +12,8 @@ import Button from "./../tabBar/Button"
 import isEmpty from "lodash/isEmpty"
 import ListViewItem from "./../../components/ListItemView"
 import ListDivider from "./../../components/ListDivider"
+import { Theme } from "./../../theme"
+import renderIf from "./../../utils/renderIf"
 
 checkTimeWithin = hours => inputDateTime => {
     let currentMoment = moment();
@@ -27,13 +29,13 @@ class Notifications extends Component {
         data: [
             {
                 key: "1",
-                title: "First Notification Title",
-                details: "Hello this is notification",
+                title: "用卒太健複部室外秘昨稿添方",
+                details: "閲学集章朝容使意暴列埼",
                 createDate: "2017-09-14T21:32:35"
             },
             {
                 key: "2",
-                title: "Second Notification Title",
+                title: "元遊年所読社射",
                 details: "Morbi pulvinar fermentum nunc a scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent aliquam turpis eu dolor iaculis, a viverra magna placerat. Praesent libero eros, eleifend scelerisque odio id, sodales tristique massa. Vivamus lectus ante, aliquam pellentesque aliquam eu, feugiat at elit.",
                 createDate: "2017-09-15T11:32:35"
             },
@@ -45,7 +47,6 @@ class Notifications extends Component {
             },
             {
                 key: "4",
-                title: "Fourth Notification Title, Morbi pulvinar fermentum nunc a scelerisque. ",
                 details: "Morbi pulvinar fermentum nunc a scelerisque. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent aliquam turpis eu dolor iaculis, a viverra magna placerat. Praesent libero eros, eleifend scelerisque odio id, sodales tristique massa. Vivamus lectus ante, aliquam pellentesque aliquam eu, feugiat at elit.",
                 createDate: "2017-09-15T11:32:35"
             },
@@ -88,15 +89,18 @@ class Notifications extends Component {
                         <ListViewItem data={this.state.data} index={index}>
                             <View style={[styles.item]}>
                                 <View style={styles.contentContainer}>
-                                    <Text style={styles.itemTitle}>{item.title}</Text>
-                                    {!isEmpty(item.details) ?
-                                        <Text style={styles.itemDetail}>{item.details}</Text> : null}
+                                    {renderIf(!isEmpty(item.title),
+                                        <Text style={[styles.itemTitle, { color: Theme.primary }]}>{item.title}</Text>
+                                    )}
+                                    {renderIf(!isEmpty(item.details),
+                                        <Text style={styles.itemDetail}>{item.details}</Text>
+                                    )}
                                     <View style={{}}>
                                         <Text style={styles.itemDate}>{this.getItemDateString(item)}</Text>
                                     </View>
                                 </View>
                             </View>
-                            <ListDivider data={this.state.data} index={index}/>
+                            <ListDivider data={this.state.data} index={index} />
                         </ListViewItem>
                     )}
                 />
@@ -119,19 +123,20 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         paddingHorizontal: 16,
         paddingVertical: 16,
-        justifyContent: "center"
+        justifyContent: "center",
     },
     contentContainer: {
-
+        
     },
     itemTitle: {
         fontSize: 16,
         color: "black",
+        fontWeight: "bold",
     },
     itemDetail: {
         marginTop: 8,
         fontSize: 14,
-        // color: "black",
+        color: "black",
     },
     itemDate: {
         marginTop: 8,

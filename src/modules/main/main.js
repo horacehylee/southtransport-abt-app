@@ -12,6 +12,7 @@ import RoadCondition from "./RoadCondition"
 import RoadPhotos from "./../roadPhoto/RoadPhotos"
 import Notices from "./../notice/Notices"
 import Notifications from "./../notification/Notifications"
+import { Theme } from "./../../theme"
 
 export class Main extends Component {
     static navigatorStyle = {
@@ -28,9 +29,9 @@ export class Main extends Component {
                         renderTabBar={
                             () => (<DefaultTabBar
                                 textStyle={styles.tabButtonText}
-                                activeTextColor={"#157cbe"}
+                                activeTextColor={Theme.primary}
                                 backgroundColor={"white"}
-                                underlineStyle={{ height: 2, backgroundColor: "#157cbe" }} />)
+                                underlineStyle={{ height: 2, backgroundColor: Theme.primary }} />)
                         }
                     >
                         <RoadCondition tabLabel="路況" />

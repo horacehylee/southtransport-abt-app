@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import Divider from "./Divider"
+import renderIf from "./../utils/renderIf"
 
 class ListDivider extends Component {
     state = {}
     render() {
         return (
-            (this.props.index != this.props.data.length - 1 ? (<Divider />) : null)
+            renderIf(this.props.index != this.props.data.length - 1, <Divider />)
         );
     }
 }
