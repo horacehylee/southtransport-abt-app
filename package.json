@@ -8,13 +8,12 @@
     "my-serve": "node %npm_package_config_cli% run-android",
     "log": "adb logcat | grep ReactNativeJS",
     "clean": "cd android && gradlew clean",
-    "my-release": "cd android && gradlew assembleRelease --console plain"
+    "pack": "cd android && gradlew assembleRelease --console plain && start android\\app\\build\\outputs\\apk"
   },
   "config": {
     "cli": "node_modules/react-native/local-cli/cli.js"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
@@ -24,7 +23,6 @@
     "react-native-maps": "^0.16.3",
     "react-native-navigation": "^1.1.213",
     "react-native-scrollable-tab-view": "^0.7.4",
-    "react-native-tab-view": "0.0.69",
     "react-native-vector-icons": "^4.3.0",
     "react-native-xml2js": "^1.0.3",
     "react-redux": "^5.0.6",

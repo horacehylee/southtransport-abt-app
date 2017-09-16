@@ -40,6 +40,7 @@ export class Main extends Component {
                                 backgroundColor={"white"}
                                 underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
                         }
+                        locked={true}
                     >
                         <RoadCondition tabLabel="路況" {...this.props} />
                         <RoadPhotos tabLabel="實景" {...this.props} />
