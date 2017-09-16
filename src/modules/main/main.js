@@ -4,6 +4,7 @@ import {
     View,
     ScrollView,
     Text,
+    ActivityIndicator,
 } from "react-native"
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import DefaultTabBar from "./../tabBar/DefaultTabBar"
@@ -15,32 +16,52 @@ import Notifications from "./../notification/Notifications"
 import { Theme } from "./../../theme"
 
 export class Main extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    state = {}
+
     static navigatorStyle = {
         navBarHidden: true,
     };
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                delayShowScrollTableView: true
+            });
+        }, 500);
+    }
 
     render() {
         return (
             <View style={styles.contentContainer}>
                 <View style={styles.contentContainer}>
                     <Header />
-                    <ScrollableTabView
-                        initialPage={0}
-                        renderTabBar={
-                            () => (<DefaultTabBar
-                                textStyle={styles.tabButtonText}
-                                activeTextColor={Theme.primary}
-                                backgroundColor={"white"}
-                                underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
-                        }
-                    >
-                        <RoadCondition tabLabel="路況" />
-                        <RoadPhotos tabLabel="實景" />
-                        <Notices tabLabel="消息" />
-                        <Notifications tabLabel="通知" />
-                    </ScrollableTabView>
+                    {this.state.delayShowScrollTableView ? (
+                        <ScrollableTabView
+                            initialPage={0}
+                            renderTabBar={
+                                () => (<DefaultTabBar
+                                    textStyle={styles.tabButtonText}
+                                    activeTextColor={Theme.primary}
+                                    backgroundColor={"white"}
+                                    underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
+                            }
+                        >
+                            <RoadCondition tabLabel="路況" {...this.props} />
+                            <RoadPhotos tabLabel="實景" {...this.props} />
+                            <Notices tabLabel="消息" {...this.props} />
+                            <Notifications tabLabel="通知" {...this.props} />
+                        </ScrollableTabView>
+                    ) : (
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+                                <ActivityIndicator animating={true} color='#ccc' />
+                            </View>
+                        )}
                 </View>
-            </View>
+            </View >
         )
     }
 }

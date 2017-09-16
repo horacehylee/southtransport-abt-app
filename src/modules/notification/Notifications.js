@@ -65,7 +65,6 @@ class Notifications extends Component {
 
     getItemDateString(item) {
         let itemDateTime = moment.utc(item.createDate)
-        console.log("itemDateTime", itemDateTime.format())
         if (checkTimeWithin12Hours(itemDateTime)) {
             return `${itemDateTime.fromNow()} - ${itemDateTime.format("hh:mm a")}`
         } else {

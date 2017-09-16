@@ -8,13 +8,19 @@ import {
 import Button from "./../tabBar/Button"
 import ListItemView from "./../../components/ListItemView"
 import ListDivider from "./../../components/ListDivider"
+import isEmpty from "lodash/isEmpty"
 
 class Notices extends Component {
+    constructor(props) {
+        super(props)
+    }
+
     state = {
         data: [
             {
                 key: 1,
                 title: "運輸署特別交通消息",
+                screen: "abt.transportDepartmentNews"
             },
             {
                 key: 2,
@@ -27,8 +33,14 @@ class Notices extends Component {
         ],
     }
 
-    refresh() {
-        console.log("refresh")
+    pressNotice(item) {
+        if (isEmpty(item.screen))
+            return
+
+        
+        this.props.navigator.push({
+            screen: item.screen,
+        })
     }
 
     render() {
@@ -38,7 +50,7 @@ class Notices extends Component {
                     data={this.state.data}
                     renderItem={({ item, index }) => (
                         <ListItemView data={this.state.data} index={index}>
-                            <Button>
+                            <Button onPress={() => this.pressNotice(item)}>
                                 <View style={styles.item}>
                                     <Text style={styles.itemTitle}>{item.title}</Text>
                                 </View>
