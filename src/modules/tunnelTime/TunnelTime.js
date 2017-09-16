@@ -135,7 +135,7 @@ class TunnelTime extends Component {
             <View style={styles.card}>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>
-                        香隧過海時間
+                        {"香隧過海時間"}
                     </Text>
                     <Text style={styles.captureTime}>
                         {this.getCaptureTimeString()}
