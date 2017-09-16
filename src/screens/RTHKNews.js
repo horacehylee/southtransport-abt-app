@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
-import { 
+import {
     View,
     Text,
     StyleSheet,
- } from 'react-native';
+    FlatList,
+    RefreshControl,
+} from 'react-native';
+import moment from "moment-timezone"
+require("moment/locale/zh-hk")
+import { parseString } from "react-native-xml2js"
+import ListItemView from "./../components/ListItemView"
+import ListDivider from "./../components/ListDivider"
+import { Theme } from "./../theme"
+import isEmpty from "lodash/isEmpty"
 
  class RTHKNews extends Component {
      state = {  }
+
      render() {
          return (
              <View style={styles.container}>
