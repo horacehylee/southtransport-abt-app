@@ -1,6 +1,5 @@
 import * as actions from "./actions"
 import * as actionTypes from "./actionTypes"
-import { actionTypes as mainActionTypes } from "./../../screens/Main"
 import { combineEpics } from "redux-observable"
 import { map } from 'rxjs/operator/map'
 import { mergeMap } from 'rxjs/operator/mergeMap'
@@ -9,6 +8,8 @@ import { delay } from "rxjs/operator/delay"
 import { Observable } from "rxjs/Observable"
 import { parseXML } from "./../../utils/parseXML"
 import { parseJourneyTime } from "./utils/parseJourneyTime"
+
+const POLLING_TIME = 120000
 
 const fetchJourneyTimeEpic = (action$, _, { http }) =>
     action$.ofType(actionTypes.FETCH_JOURNEY_TIME)
@@ -28,7 +29,7 @@ const fetchJourneyTimeEpic = (action$, _, { http }) =>
 const pollJourneyTimeEpic = action$ =>
     action$.ofType(actionTypes.POLL_START_JOURNEY_TIME)
         .switchMap(action =>
-            Observable.timer(0, 120000)
+            Observable.timer(0, POLLING_TIME)
                 // Observable.timer(0, 60000)
                 // Observable.timer(0, 5000)
                 .switchMap(() => Observable.of(actions.fetchJourneyTime()))

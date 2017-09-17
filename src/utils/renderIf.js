@@ -1,4 +1,4 @@
-const renderIf = (condition, renderFunction) => {
+export const renderIf = (condition, renderFunction) => {
     return condition ? renderFunction : null
 }
 

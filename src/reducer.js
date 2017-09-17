@@ -1,8 +1,14 @@
 import { combineReducers } from 'redux-immutable';
-import { tunnelTimeReducer } from "./modules/tunnelTime"
+import { reducer as tunnelTimeReducer } from "./modules/tunnelTime"
 import { reducer as MainReducer } from "./screens/Main"
+import { reducer as transportDepartmentNewsReducer } from "./screens/TransportDepartmentNews"
+import { reducer as rthkNewsReducer } from "./screens/RTHKNews"
+import { reducer as commericalRadioNewsReducer } from "./screens/CommericalRadioNews"
 
 export const rootReducer = combineReducers({
     main: MainReducer,
     tunnelTime: tunnelTimeReducer,
+    transportDepartmentNews: transportDepartmentNewsReducer,
+    rthkNews: rthkNewsReducer,
+    commericalRadioNews: commericalRadioNewsReducer,
 })

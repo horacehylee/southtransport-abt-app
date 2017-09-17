@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Navigation } from "react-native-navigation"
 import { Main } from "./screens/Main"
 import { Theme } from "./theme"
-import TransportDepartmentNews from "./screens/TransportDepartmentNews"
-import RTHKNews from "./screens/RTHKNews"
-import CommericalRadioNews from "./screens/CommericalRadioNews"
+import { TransportDepartmentNews } from "./screens/TransportDepartmentNews"
+import { RTHKNews } from "./screens/RTHKNews"
+import { CommericalRadioNews } from "./screens/CommericalRadioNews"
 
 const styles = {
     statusBarColor: Theme.primaryDark,

@@ -11,30 +11,40 @@ import {
 } from "react-native"
 const win = Dimensions.get('window');
 
+const randomizeUrl = (url) => url + "?r=" + Math.random()
+
 class RoadPhotos extends Component {
     state = {
-        refreshing: false,
-        roadPhotos: [
-            {
-                key: "1",
-                title: "香港仔隧道灣仔入口",
-                imgUrl: "http://tdcctv.data.one.gov.hk/H210F.JPG"
-            },
-            {
-                key: "2",
-                title: "香港仔隧道香港仔入口",
-                imgUrl: "http://tdcctv.data.one.gov.hk/H421F.JPG"
-            },
-            {
-                key: "3",
-                title: "黃竹坑道近香港仔隧道",
-                imgUrl: "http://tdcctv.data.one.gov.hk/H401F.JPG"
-            },
-        ]
+        ...this.getState()
     }
 
-    refresh() {
+    getState() {
+        return {
+            refreshing: false,
+            roadPhotos: [
+                {
+                    key: "1",
+                    title: "香港仔隧道灣仔入口",
+                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H210F.JPG")
+                },
+                {
+                    key: "2",
+                    title: "香港仔隧道香港仔入口",
+                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H210F.JPG")
+                },
+                {
+                    key: "3",
+                    title: "黃竹坑道近香港仔隧道",
+                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H210F.JPG")
+                },
+            ]
+        }
+    }
 
+    refresh = () => {
+        this.setState({
+            ...this.getState()
+        })
     }
 
     render() {
@@ -55,7 +65,7 @@ class RoadPhotos extends Component {
                             <Text style={styles.title}>{item.title}</Text>
                         </View>
                         <View style={styles.roadPhotoContainer}>
-                            <Image style={styles.roadPhoto} source={{ uri: item.imgUrl + "?r=" + Math.random() }} />
+                            <Image style={styles.roadPhoto} source={{ uri: item.imgUrl }} />
                         </View>
                     </View>
                 )}
