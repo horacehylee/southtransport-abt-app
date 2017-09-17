@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+// import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { rootReducer } from "./reducer"
 import { Iterable } from "immutable"
@@ -14,7 +14,7 @@ const epicMiddleware = createEpicMiddleware(rootEpic, {
         }
     }
 });
-let middleware = [thunk, epicMiddleware];
+let middleware = [epicMiddleware];
 
 const stateTransformer = (state) => {
     if (Iterable.isIterable(state)) return state.toJS();
@@ -37,6 +37,7 @@ export function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
+        // applyMiddleware(...middleware)
         composeEnhancers(applyMiddleware(...middleware))
     );
 }

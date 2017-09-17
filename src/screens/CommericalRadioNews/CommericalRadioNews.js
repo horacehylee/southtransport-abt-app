@@ -29,11 +29,11 @@ class CommericalRadioNews extends Component {
 
 	render() {
 		return (
-			<View style={styles.container}>
+			<View>
 				<FlatList
 					refreshControl={
 						<RefreshControl
-							refreshing={false}
+							refreshing={this.props.loading && !isEmpty(this.props.news)}
 							onRefresh={this.refresh}
 							colors={[Theme.primary]}
 						/>

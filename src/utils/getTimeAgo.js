@@ -3,6 +3,9 @@ require("moment/locale/zh-hk")
 import { checkTimeWithin12Hours } from "./checkTimeWithin"
 
 const getTimeAgo = (momentDate) => {
+    if (!momentDate) {
+        return null
+    }
     let timeFormat = "ah時mm分"
     if (checkTimeWithin12Hours(momentDate)) {
         return `${momentDate.fromNow()} - ${momentDate.format(timeFormat)}`

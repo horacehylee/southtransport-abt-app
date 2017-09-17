@@ -5,6 +5,7 @@ import {
     StyleSheet,
     FlatList,
     RefreshControl,
+    ActivityIndicator,
 } from 'react-native';
 import ListItemView from "./../../components/ListItemView"
 import { Theme } from "./../../theme"
@@ -13,6 +14,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from "redux"
 import * as rthkNewsActions from "./actions"
 import isEmpty from "lodash/isEmpty"
+import renderIf from "./../../utils/renderIf"
 
 class RTHKNews extends Component {
     state = {}
@@ -28,25 +30,33 @@ class RTHKNews extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <FlatList
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={false}
-                            onRefresh={this.refresh}
-                            colors={[Theme.primary]}
+                {renderIf(!isEmpty(this.props.news), (
+                    <View>
+                        <FlatList
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={this.props.loading && !isEmpty(this.props.news)}
+                                    onRefresh={this.refresh}
+                                    colors={[Theme.primary]}
+                                />
+                            }
+                            data={this.props.news}
+                            renderItem={({ item, index }) => (
+                                <ListItemView data={this.props.news} index={index}>
+                                    <ListItem
+                                        details={item.details}
+                                        detailsStyle={{ fontSize: 16, }}
+                                        date={item.date}
+                                    />
+                                </ListItemView>
+                            )}
                         />
-                    }
-                    data={this.props.news}
-                    renderItem={({ item, index }) => (
-                        <ListItemView data={this.props.news} index={index}>
-                            <ListItem
-                                details={item.details}
-                                detailsStyle={{ fontSize: 16, }}
-                                date={item.date}
-                            />
-                        </ListItemView>
-                    )}
-                />
+                    </View>
+                ), (
+                    <View>
+                        <ActivityIndicator />
+                    </View>
+                ))}
             </View>
         );
     }

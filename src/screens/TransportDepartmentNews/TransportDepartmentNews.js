@@ -29,7 +29,8 @@ class TransportDepartmentNews extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View>
+                {/* refreshing={this.props.loading && !isEmpty(this.props.messages)} */}
                 <FlatList
                     refreshControl={
                         <RefreshControl
