@@ -3,6 +3,7 @@ import {
     View,
     Text,
     StyleSheet,
+    AppState,
 } from "react-native"
 import { parseString } from "react-native-xml2js"
 import TunnelTimeDisplay from "./TunnelTimeDisplay"
@@ -18,10 +19,36 @@ import isEmpty from "lodash/isEmpty"
 class TunnelTime extends Component {
 
     componentDidMount() {
-        this.props.actions.fetchJourneyTime();
+        this.props.actions.pollStartJourneyTime();
+        AppState.addEventListener('change', (state) => {
+            if (state === 'active') {
+                console.log(this.state)
+                if (this.state.showing)
+                    this.props.actions.pollStartJourneyTime();
+            }
+            if (state === 'background') {
+                this.props.actions.pollStopJourneyTime();
+            }
+        })
     }
 
-    state = {}
+    state = {
+        showing: true,
+    }
+
+    tabWillBeVisible() {
+        this.setState({
+            showing: true,
+        })
+        this.props.actions.pollStartJourneyTime();
+    }
+
+    tabWillBeHidden() {
+        this.setState({
+            showing: false,
+        })
+        this.props.actions.pollStopJourneyTime();
+    }
 
     getCaptureTimeString() {
         if (this.props.captureDateTime) {
@@ -122,4 +149,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TunnelTime);
+export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(TunnelTime);

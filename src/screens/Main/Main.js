@@ -20,18 +20,34 @@ import { Theme } from "./../../theme"
 import * as mainActions from "./actions"
 
 class Main extends Component {
-    constructor(props) {
-        super(props)
+    state = {
+        childTabs: new Array(4),
     }
-
-    state = {}
 
     static navigatorStyle = {
         navBarHidden: true,
     };
 
     onChangeTab = ({ i }) => {
-        this.props.actions.changeTab(this.props.tabIndex, i)
+        if (this.props.currTab === i)
+            return
+
+        let currTab = this.state.childTabs[this.props.currTab]
+        let nextTab = this.state.childTabs[i]
+        if (!currTab && !nextTab)
+            return
+
+        if (currTab && currTab.tabWillBeHidden)
+            currTab.tabWillBeHidden()
+
+        if (nextTab && nextTab.tabWillBeVisible)
+            nextTab.tabWillBeVisible()
+
+        this.props.actions.changeTab(this.props.currTab, i)
+    }
+
+    addChildTab = (i) => (instance) => {
+        this.state.childTabs[i] = instance
     }
 
     render() {
@@ -40,7 +56,7 @@ class Main extends Component {
                 <View style={styles.contentContainer}>
                     <Header />
                     <ScrollableTabView
-                        initialPage={this.props.tabIndex}
+                        initialPage={this.props.currTab}
                         renderTabBar={
                             () => (<DefaultTabBar
                                 textStyle={styles.tabButtonText}
@@ -51,10 +67,10 @@ class Main extends Component {
                         onChangeTab={this.onChangeTab}
                         locked={true}
                     >
-                        <RoadCondition tabLabel="路況" />
-                        <RoadPhotos tabLabel="實景" />
-                        <Notices tabLabel="消息" navigator={this.props.navigator} />
-                        <Notifications tabLabel="通知" />
+                        <RoadCondition tabLabel="路況" ref={this.addChildTab(0)} />
+                        <RoadPhotos tabLabel="實景" ref={this.addChildTab(1)} />
+                        <Notices tabLabel="消息" navigator={this.props.navigator} ref={this.addChildTab(2)} />
+                        <Notifications tabLabel="通知" ref={this.addChildTab(3)} />
                     </ScrollableTabView>
                 </View>
             </View >
@@ -101,7 +117,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state, ownProps) {
     let mainState = state.get("main")
     return {
-        tabIndex: mainState.get("tabIndex")
+        currTab: mainState.get("currTab"),
+        prevTab: mainState.get("prevTab"),
     };
 }
 

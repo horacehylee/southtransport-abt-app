@@ -5,8 +5,15 @@ import { rootReducer } from "./reducer"
 import { Iterable } from "immutable"
 import { createEpicMiddleware } from 'redux-observable';
 import { rootEpic } from "./epic"
+import { ajax } from 'rxjs/observable/dom/ajax';
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const epicMiddleware = createEpicMiddleware(rootEpic, {
+    dependencies: {
+        http: {
+            get: ajax.get
+        }
+    }
+});
 let middleware = [thunk, epicMiddleware];
 
 const stateTransformer = (state) => {
