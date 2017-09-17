@@ -5,7 +5,7 @@ import {
     Text,
 } from "react-native"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
-import Button from "./../tabBar/Button"
+import Button from "./Button"
 
 class Header extends Component {
     state = {}

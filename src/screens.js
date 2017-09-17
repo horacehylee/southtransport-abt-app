@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from "react-native-navigation"
-import { Main } from "./modules/main/Main"
+import { Main } from "./screens/Main"
 import { Theme } from "./theme"
 import TransportDepartmentNews from "./screens/TransportDepartmentNews"
 import RTHKNews from "./screens/RTHKNews"
@@ -16,10 +16,10 @@ const styles = {
 }
 
 export function registerScreens(store, provider) {
-    Navigation.registerComponent("abt.main", () => screenWrapper(Main))
-    Navigation.registerComponent("abt.transportDepartmentNews", () => screenWrapper(TransportDepartmentNews))
-    Navigation.registerComponent("abt.rthkNews", () => screenWrapper(RTHKNews))
-    Navigation.registerComponent("abt.commericalRadioNews", () => screenWrapper(CommericalRadioNews))
+    Navigation.registerComponent("abt.main", () => screenWrapper(Main), store, provider)
+    Navigation.registerComponent("abt.transportDepartmentNews", () => screenWrapper(TransportDepartmentNews), store, provider)
+    Navigation.registerComponent("abt.rthkNews", () => screenWrapper(RTHKNews), store, provider)
+    Navigation.registerComponent("abt.commericalRadioNews", () => screenWrapper(CommericalRadioNews), store, provider)
 }
 
 // Wrap with HOC, share screen components

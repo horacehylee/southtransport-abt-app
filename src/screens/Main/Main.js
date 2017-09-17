@@ -6,16 +6,20 @@ import {
     Text,
     ActivityIndicator,
 } from "react-native"
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-import DefaultTabBar from "./../tabBar/DefaultTabBar"
-import Header from "./../header/Header"
-import RoadCondition from "./RoadCondition"
-import RoadPhotos from "./../roadPhoto/RoadPhotos"
-import Notices from "./../notice/Notices"
-import Notifications from "./../notification/Notifications"
-import { Theme } from "./../../theme"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
 
-export class Main extends Component {
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import DefaultTabBar from "./../../modules/tabBar/DefaultTabBar"
+import Header from "./../../components/Header"
+import { RoadCondition } from "./components/RoadCondition"
+import RoadPhotos from "./../../modules/roadPhoto/RoadPhotos"
+import Notices from "./../../modules/notice/Notices"
+import Notifications from "./../../modules/notification/Notifications"
+import { Theme } from "./../../theme"
+import * as mainActions from "./actions"
+
+class Main extends Component {
     constructor(props) {
         super(props)
     }
@@ -26,13 +30,17 @@ export class Main extends Component {
         navBarHidden: true,
     };
 
+    onChangeTab = ({ i }) => {
+        this.props.actions.changeTab(this.props.tabIndex, i)
+    }
+
     render() {
         return (
             <View style={styles.contentContainer}>
                 <View style={styles.contentContainer}>
                     <Header />
                     <ScrollableTabView
-                        initialPage={0}
+                        initialPage={this.props.tabIndex}
                         renderTabBar={
                             () => (<DefaultTabBar
                                 textStyle={styles.tabButtonText}
@@ -40,12 +48,13 @@ export class Main extends Component {
                                 backgroundColor={"white"}
                                 underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
                         }
+                        onChangeTab={this.onChangeTab}
                         locked={true}
                     >
-                        <RoadCondition tabLabel="路況" {...this.props} />
-                        <RoadPhotos tabLabel="實景" {...this.props} />
-                        <Notices tabLabel="消息" {...this.props} />
-                        <Notifications tabLabel="通知" {...this.props} />
+                        <RoadCondition tabLabel="路況" />
+                        <RoadPhotos tabLabel="實景" />
+                        <Notices tabLabel="消息" navigator={this.props.navigator} />
+                        <Notifications tabLabel="通知" />
                     </ScrollableTabView>
                 </View>
             </View >
@@ -87,3 +96,19 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     }
 });
+
+
+function mapStateToProps(state, ownProps) {
+    let mainState = state.get("main")
+    return {
+        tabIndex: mainState.get("tabIndex")
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(mainActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

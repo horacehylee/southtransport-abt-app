@@ -24,7 +24,7 @@ class ListItemView extends Component {
     }
 }
 
-ListItemView.PropTypes = {
+ListItemView.propTypes = {
     data: React.PropTypes.array.isRequired,
     index: React.PropTypes.number.isRequired,
     removeDivider: React.PropTypes.bool,

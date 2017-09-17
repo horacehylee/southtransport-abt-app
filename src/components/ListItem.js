@@ -36,7 +36,7 @@ class ListItem extends Component {
     }
 }
 
-ListItem.PropTypes = {
+ListItem.propTypes = {
     title: React.PropTypes.string,
     details: React.PropTypes.string,
     date: React.PropTypes.object,

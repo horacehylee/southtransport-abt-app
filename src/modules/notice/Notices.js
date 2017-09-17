@@ -5,7 +5,7 @@ import {
     StyleSheet,
     FlatList,
 } from "react-native"
-import Button from "./../tabBar/Button"
+import Button from "./../../components/Button"
 import ListItemView from "./../../components/ListItemView"
 import ListDivider from "./../../components/ListDivider"
 import isEmpty from "lodash/isEmpty"

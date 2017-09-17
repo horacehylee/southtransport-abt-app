@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 4,
         borderRadius: 3,
+        minWidth: 24,
     },
     time: {
         fontWeight: "bold",

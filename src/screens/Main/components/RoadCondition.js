@@ -3,10 +3,10 @@ import {
     View,
     StyleSheet,
 } from "react-native"
-import AbtMap from "./../map/Map"
-import TunnelTime from "./../tunnelTime/TunnelTime"
+import AbtMap from "./../../../modules/map/Map"
+import { TunnelTime } from "./../../../modules/tunnelTime"
 
-class RoadCondition extends Component {
+export class RoadCondition extends Component {
     state = {}
     render() {
         return (
@@ -23,5 +23,3 @@ const styles = StyleSheet.create({
         flex: 1,
     },
 })
-
-export default RoadCondition;

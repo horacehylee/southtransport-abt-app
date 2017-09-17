@@ -6,7 +6,7 @@ const {
   View,
   Animated,
 } = ReactNative;
-const Button = require('./Button');
+const Button = require('./../../components/Button');
 
 const DefaultTabBar = React.createClass({
   propTypes: {

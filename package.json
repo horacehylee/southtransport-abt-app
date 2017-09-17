@@ -6,7 +6,7 @@
     "start": "node %npm_package_config_cli% start",
     "test": "jest",
     "my-serve": "node %npm_package_config_cli% run-android",
-    "log": "adb logcat | grep ReactNativeJS",
+    "log": "adb logcat *:S ReactNative:V ReactNativeJS:V",
     "clean": "cd android && gradlew clean --console plain",
     "pack": "cd android && gradlew assembleRelease --console plain && start app\\build\\outputs\\apk"
   },
@@ -14,6 +14,8 @@
     "cli": "node_modules/react-native/local-cli/cli.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "moment-timezone": "^0.5.13",
@@ -27,6 +29,9 @@
     "react-native-xml2js": "^1.0.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-immutable": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.16.0",
     "redux-thunk": "^2.2.0",
     "rxjs": "^5.4.3",
     "styled-components": "^2.1.2"
@@ -36,7 +41,9 @@
     "babel-preset-react-native": "3.0.2",
     "jest": "21.0.1",
     "react-test-renderer": "16.0.0-alpha.12",
-    "redux-devtools": "^3.4.0"
+    "redux-devtools": "^3.4.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-immutable-state-invariant": "^2.0.0"
   },
   "jest": {
     "preset": "react-native"
