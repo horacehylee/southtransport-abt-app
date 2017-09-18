@@ -31,6 +31,10 @@ class Notices extends Component {
                 key: 3,
                 title: "商業電台交通消息",
                 screen: "abt.commericalRadioNews"
+            }, {
+                key: 4,
+                title: "香港天文台天氣警告",
+                screen: "abt.weatherWarning"
             }
         ],
     }
@@ -38,7 +42,6 @@ class Notices extends Component {
     pressNotice(item) {
         if (isEmpty(item.screen))
             return
-
 
         this.props.navigator.push({
             screen: item.screen,

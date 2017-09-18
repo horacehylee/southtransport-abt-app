@@ -5,6 +5,7 @@ import { Theme } from "./theme"
 import { TransportDepartmentNews } from "./screens/TransportDepartmentNews"
 import { RTHKNews } from "./screens/RTHKNews"
 import { CommericalRadioNews } from "./screens/CommericalRadioNews"
+import { WeatherWarning } from "./screens/WeatherWarning"
 
 const styles = {
     statusBarColor: Theme.primaryDark,
@@ -20,6 +21,7 @@ export function registerScreens(store, provider) {
     Navigation.registerComponent("abt.transportDepartmentNews", () => screenWrapper(TransportDepartmentNews), store, provider)
     Navigation.registerComponent("abt.rthkNews", () => screenWrapper(RTHKNews), store, provider)
     Navigation.registerComponent("abt.commericalRadioNews", () => screenWrapper(CommericalRadioNews), store, provider)
+    Navigation.registerComponent("abt.weatherWarning", () => screenWrapper(WeatherWarning), store, provider)
 }
 
 // Wrap with HOC, share screen components

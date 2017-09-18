@@ -36,6 +36,7 @@
     "redux-observable": "^0.16.0",
     "redux-thunk": "^2.2.0",
     "rxjs": "^5.4.3",
+    "striptags": "^3.1.0",
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
