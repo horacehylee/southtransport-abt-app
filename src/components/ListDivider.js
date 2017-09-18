@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from "prop-types"
 import Divider from "./Divider"
 import renderIf from "./../utils/renderIf"
 
@@ -12,8 +13,8 @@ class ListDivider extends Component {
 }
 
 ListDivider.propTypes = {
-    data: React.PropTypes.array.isRequired,
-    index: React.PropTypes.number.isRequired,
+    data: PropTypes.array.isRequired,
+    index: PropTypes.number.isRequired,
 }
 
 export default ListDivider;

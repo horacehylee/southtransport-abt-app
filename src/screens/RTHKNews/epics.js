@@ -20,7 +20,6 @@ const fetchRTHKNews = (action$, _, { http }) =>
                         .catch(err => Observable.empty())
                 )
                 .map(jObject => parseNews(jObject[1]))
-                .do((object) => console.log("response", object))
                 .map(payload => actions.fetchNewsFulfilled(payload))
                 .takeUntil(action$.ofType(actionTypes.FETCH_RTHK_NEWS_CANCELLED))
                 .catch(err => Observable.of(actions.fetchNewsError(err)))

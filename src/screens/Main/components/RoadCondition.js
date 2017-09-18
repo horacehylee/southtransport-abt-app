@@ -26,7 +26,6 @@ export class RoadCondition extends Component {
     }
 
     addTunnelTime = (instance) => {
-        console.log(instance)
         this.setState({
             tunnelTime: instance
         })

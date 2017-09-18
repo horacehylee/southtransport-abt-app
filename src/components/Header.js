@@ -6,13 +6,10 @@ import {
 } from "react-native"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Button from "./Button"
+import FacebookButton from "./FacebookButton"
 
 class Header extends Component {
     state = {}
-
-    gotoFacebook() {
-        console.log("Facebook")
-    }
 
     render() {
         return (
@@ -29,11 +26,11 @@ class Header extends Component {
                                 <Icon name="timetable" style={styles.button} />
                             </View>
                         </Button>
-                        <Button>
+                        <FacebookButton pageId={"southtransport"}>
                             <View style={styles.buttonContainer}>
                                 <Icon name="facebook-box" style={styles.button} />
                             </View>
-                        </Button>
+                        </FacebookButton>
                     </View>
                 </View>
             </View>

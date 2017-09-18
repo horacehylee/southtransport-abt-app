@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types"
 import {
     View,
     Text,
@@ -37,12 +38,12 @@ class ListItem extends Component {
 }
 
 ListItem.propTypes = {
-    title: React.PropTypes.string,
-    details: React.PropTypes.string,
-    date: React.PropTypes.object,
-    titleStyle: React.PropTypes.object,
-    detailsStyle: React.PropTypes.object,
-    dateStyle: React.PropTypes.object,
+    title: PropTypes.string,
+    details: PropTypes.string,
+    date: PropTypes.object,
+    titleStyle: PropTypes.object,
+    detailsStyle: PropTypes.object,
+    dateStyle: PropTypes.object,
 }
 
 ListItem.props = {

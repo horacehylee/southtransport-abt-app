@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types"
 import {
     View,
     StyleSheet,
@@ -25,9 +26,9 @@ class ListItemView extends Component {
 }
 
 ListItemView.propTypes = {
-    data: React.PropTypes.array.isRequired,
-    index: React.PropTypes.number.isRequired,
-    removeDivider: React.PropTypes.bool,
+    data: PropTypes.array.isRequired,
+    index: PropTypes.number.isRequired,
+    removeDivider: PropTypes.bool,
 }
 
 ListItemView.props = {
