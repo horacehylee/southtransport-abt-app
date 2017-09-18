@@ -19,6 +19,8 @@ import Notifications from "./../../modules/notification/Notifications"
 import { Theme } from "./../../theme"
 import * as mainActions from "./actions"
 
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
+
 class Main extends Component {
     state = {
         childTabs: new Array(4),
@@ -27,6 +29,21 @@ class Main extends Component {
     static navigatorStyle = {
         navBarHidden: true,
     };
+
+    componentDidMount() {
+        FCM.requestPermissions();
+        FCM.getFCMToken().then(token => {
+            console.log("fcm token", token)
+        });
+
+        this.notificationListener = FCM.on(FCMEvent.Notification, async (notif) => {
+            // do some component related stuff
+        });
+    }
+
+    componentWillUnmount() {
+        this.notificationListener.remove();
+    }
 
     onChangeTab = ({ i }) => {
         if (this.props.currTab === i)
