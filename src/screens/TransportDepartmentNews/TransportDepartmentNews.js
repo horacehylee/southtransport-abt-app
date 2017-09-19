@@ -29,12 +29,11 @@ class TransportDepartmentNews extends Component {
 
     render() {
         return (
-            <View>
-                {/* refreshing={this.props.loading && !isEmpty(this.props.messages)} */}
+            <View style={styles.container}>
                 <FlatList
                     refreshControl={
                         <RefreshControl
-                            refreshing={this.props.loading && !isEmpty(this.props.messages)}
+                            refreshing={this.props.loading && this.props.messages.size > 0}
                             onRefresh={this.refresh}
                             colors={[Theme.primary]}
                         />
@@ -59,9 +58,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    red: {
-        backgroundColor: "red",
-    }
 })
 
 const mapStateToProps = (state, ownProps) => {
