@@ -28,7 +28,7 @@ if (__DEV__) {
     middleware = [
         ...middleware,
         reduxImmutableStateInvariant,
-        logger
+        // logger,
     ];
 } else {
     middleware = [...middleware];

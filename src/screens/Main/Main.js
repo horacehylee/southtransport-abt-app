@@ -20,7 +20,8 @@ import { Theme } from "./../../theme"
 import * as mainActions from "./actions"
 
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
-// this shall be called regardless of app state: running, background or not running. Won't be called when app is killed by user in iOS
+// this shall be called regardless of app state: running, background or not running. 
+// Won't be called when app is killed by user in iOS
 FCM.on(FCMEvent.Notification, async (notif) => {
     console.log("notif from global", notif)
     // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
