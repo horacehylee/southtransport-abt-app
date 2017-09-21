@@ -19,24 +19,6 @@ import Notifications from "./../../modules/notification/Notifications"
 import { Theme } from "./../../theme"
 import * as mainActions from "./actions"
 
-import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
-// this shall be called regardless of app state: running, background or not running. 
-// Won't be called when app is killed by user in iOS
-FCM.on(FCMEvent.Notification, async (notif) => {
-    console.log("notif from global", notif)
-    // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-    if (notif.local_notification) {
-        //this is a local notification
-    }
-    if (notif.opened_from_tray) {
-        //app is open/resumed because user clicked banner
-    }
-});
-FCM.on(FCMEvent.RefreshToken, (token) => {
-    console.log("refresh token: ", token)
-    // fcm token may not be available on first load, catch it here
-});
-
 class Main extends Component {
     state = {
         childTabs: new Array(4),
@@ -47,18 +29,9 @@ class Main extends Component {
     };
 
     componentDidMount() {
-        FCM.getFCMToken().then(token => {
-            console.log("fcm token", token)
-        });
-
-        this.notificationListener = FCM.on(FCMEvent.Notification, async (notif) => {
-            console.log("notif from componentDidMount", notif)
-            // do some component related stuff
-        });
     }
 
     componentWillUnmount() {
-        this.notificationListener.remove();
     }
 
     onChangeTab = ({ i }) => {
