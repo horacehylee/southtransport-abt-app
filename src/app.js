@@ -6,36 +6,74 @@ import { Theme } from "./theme"
 import { Provider } from 'react-redux';
 import { configureStore } from "./store"
 
+import { AsyncStorage } from 'react-native';
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
-FCM.subscribeToTopic('/topics/southtransport');
+import isEmpty from "lodash/isEmpty"
+import isEqual from "lodash/isEqual"
+
+// FCM.subscribeToTopic('global');
 // this shall be called regardless of app state: running, background or not running. 
 // Won't be called when app is killed by user in iOS
-FCM.on(FCMEvent.Notification, async (notif) => {
-  console.log("notif from global", notif)
-  // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-  if (notif.local_notification) {
-    //this is a local notification
+// FCM.on(FCMEvent.Notification, async (notif) => {
+//   console.log("notif from global", notif)
+//   // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
+//   if (notif.local_notification) {
+//     //this is a local notification
+//   }
+//   if (notif.opened_from_tray) {
+//     //app is open/resumed because user clicked banner
+//   }
+// });
+const storeName = "@SouthTransportABT"
+const fcmTokenKey = "fcmToken"
+const isRefreshedKey = "isRefreshed"
+
+FCM.getFCMToken().then(async token => {
+  console.log("fcm token", token)
+  try {
+    const storedFcmToken = await AsyncStorage.getItem(`${storeName}:${fcmTokenKey}`);
+    if (storedFcmToken && !isEmpty(storedFcmToken)) {
+      console.log("stored fcm token", storedFcmToken);
+
+      // If token is different from stored token, store it and set isRefreshed
+      if (!isEqual(storedFcmToken, token)) {
+        await AsyncStorage.setItem(`${storeName}:${fcmTokenKey}`, token);
+        await AsyncStorage.setItem(`${storeName}:${isRefreshed}`, true);
+        checkAndSendTokenToServer()
+      }
+    }
+
+    await AsyncStorage.setItem(`${storeName}:${fcmTokenKey}`, token);
+    await AsyncStorage.setItem(`${storeName}:${isRefreshed}`, true);
+    checkAndSendTokenToServer()
+  } catch (error) {
   }
-  if (notif.opened_from_tray) {
-    //app is open/resumed because user clicked banner
-  }
-});
-FCM.on(FCMEvent.RefreshToken, (token) => {
-  console.log("refresh token: ", token)
-  // fcm token may not be available on first load, catch it here
 });
 
-console.log("Navigation.isAppLaunched()", Navigation.isAppLaunched())
+checkAndSendTokenToServer = async () => {
+  console.log("checkAndSendTokenToServer")
+  try {
+    const isRefreshed = await AsyncStorage.getItem(`${storeName}:${isRefreshed}`);
+    if (isRefreshed !== null) {
+      if (isRefreshed) {
+        console.log("send token to server")
+        await AsyncStorage.setItem(`${storeName}:${isRefreshed}`, false);
+      }
+    }
+  }
+  catch (errr) {
+  }
+}
+checkAndSendTokenToServer();
+
 Promise.resolve(Navigation.isAppLaunched())
   .then(appLaunched => {
-    console.log("App Launched", appLaunched)
     if (appLaunched) {
       startApp(); // App is launched -> show UI
     } else {
       new NativeEventsReceiver().appLaunched(startApp); // App hasn't been launched yet -> show the UI only when needed.
     }
   });
-
 
 function startApp() {
   const store = configureStore();
