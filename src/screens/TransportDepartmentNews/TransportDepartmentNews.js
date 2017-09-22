@@ -29,7 +29,7 @@ class TransportDepartmentNews extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View>
                 <FlatList
                     refreshControl={
                         <RefreshControl
