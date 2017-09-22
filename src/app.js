@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigation } from "react-native-navigation"
+import { Navigation, NativeEventsReceiver } from "react-native-navigation"
 import Icon from "react-native-vector-icons/MaterialIcons"
 import { registerScreens } from "./screens"
 import { Theme } from "./theme"
@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from "./store"
 
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
+FCM.subscribeToTopic('/topics/southtransport');
 // this shall be called regardless of app state: running, background or not running. 
 // Won't be called when app is killed by user in iOS
 FCM.on(FCMEvent.Notification, async (notif) => {
@@ -24,12 +25,26 @@ FCM.on(FCMEvent.RefreshToken, (token) => {
   // fcm token may not be available on first load, catch it here
 });
 
-const store = configureStore();
+console.log("Navigation.isAppLaunched()", Navigation.isAppLaunched())
+Promise.resolve(Navigation.isAppLaunched())
+  .then(appLaunched => {
+    console.log("App Launched", appLaunched)
+    if (appLaunched) {
+      startApp(); // App is launched -> show UI
+    } else {
+      new NativeEventsReceiver().appLaunched(startApp); // App hasn't been launched yet -> show the UI only when needed.
+    }
+  });
 
-registerScreens(store, Provider);
 
-Navigation.startSingleScreenApp({
-  screen: {
-    screen: 'abt.main', // unique ID registered with Navigation.registerScreen
-  },
-})
+function startApp() {
+  const store = configureStore();
+
+  registerScreens(store, Provider);
+
+  Navigation.startSingleScreenApp({
+    screen: {
+      screen: 'abt.main', // unique ID registered with Navigation.registerScreen
+    },
+  })
+}
