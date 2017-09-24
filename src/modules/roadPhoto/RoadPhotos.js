@@ -30,12 +30,12 @@ class RoadPhotos extends Component {
                 {
                     key: "2",
                     title: "香港仔隧道香港仔入口",
-                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H210F.JPG")
+                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H421F.JPG")
                 },
                 {
                     key: "3",
                     title: "黃竹坑道近香港仔隧道",
-                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H210F.JPG")
+                    imgUrl: randomizeUrl("http://tdcctv.data.one.gov.hk/H401F.JPG")
                 },
             ]
         }
