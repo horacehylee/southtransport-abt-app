@@ -15,6 +15,7 @@ import { bindActionCreators } from "redux"
 import * as transportDepartNewsActions from "./actions"
 import isEmpty from "lodash/isEmpty"
 import { renderIfElse } from "./../../utils/renderIfElse"
+import renderIf from "./../../utils/renderIf"
 
 class TransportDepartmentNews extends Component {
     state = {}
@@ -29,26 +30,34 @@ class TransportDepartmentNews extends Component {
 
     render() {
         return (
-            <View>
-                <FlatList
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={this.props.loading && this.props.messages.size > 0}
-                            onRefresh={this.refresh}
-                            colors={[Theme.primary]}
+            <View style={styles.container}>
+                {renderIf(!isEmpty(this.props.messages), (
+                    <View>
+                        <FlatList
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={this.props.loading && this.props.messages.size > 0}
+                                    onRefresh={this.refresh}
+                                    colors={[Theme.primary]}
+                                />
+                            }
+                            data={this.props.messages}
+                            renderItem={({ item, index }) => (
+                                <ListItemView data={this.props.messages} index={index}>
+                                    <ListItem
+                                        details={item.details}
+                                        detailsStyle={{ color: "black", fontSize: 16, }}
+                                        date={item.date}
+                                    />
+                                </ListItemView>
+                            )}
                         />
-                    }
-                    data={this.props.messages}
-                    renderItem={({ item, index }) => (
-                        <ListItemView data={this.props.messages} index={index}>
-                            <ListItem
-                                details={item.details}
-                                detailsStyle={{ color: "black", fontSize: 16, }}
-                                date={item.date}
-                            />
-                        </ListItemView>
-                    )}
-                />
+                    </View>
+                ), (
+                        <View>
+                            <ActivityIndicator />
+                        </View>
+                    ))}
             </View>
         );
     }

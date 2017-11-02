@@ -23,7 +23,7 @@ class CommericalRadioNews extends Component {
 		this.props.actions.fetchNews()
 	}
 
-	refresh() {
+	refresh = () => {
 		this.props.actions.fetchNews()
 	}
 
@@ -55,9 +55,9 @@ class CommericalRadioNews extends Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	}
+	// container: {
+	// 	flex: 1,
+	// }
 })
 
 const mapStateToProps = (state, ownProps) => {
