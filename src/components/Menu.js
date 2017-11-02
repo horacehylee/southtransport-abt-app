@@ -31,10 +31,24 @@ class MenuWrapper extends Component {
             title: '南交TG',
         },
         {
-            title: '通知設定',
+            title: '設定',
+            onSelect: () => {
+                this.props.navigator.push({
+                    screen: 'abt.settings',
+                    title: '設定',
+                    animationType: "fade",
+                })
+            }
         },
         {
             title: '關於本程式',
+            onSelect: () => {
+                this.props.navigator.push({
+                    screen: 'abt.about',
+                    title: '關於本程式',
+                    animationType: "fade",
+                })
+            }
         },
     ]
 

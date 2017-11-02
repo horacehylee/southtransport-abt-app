@@ -5,6 +5,7 @@ import { reducer as transportDepartmentNewsReducer } from "./screens/TransportDe
 import { reducer as rthkNewsReducer } from "./screens/RTHKNews"
 import { reducer as commericalRadioNewsReducer } from "./screens/CommericalRadioNews"
 import { reducer as weatherWarningReducer } from "./screens/WeatherWarning"
+import notificationReducer from './modules/notification/reducer';
 
 export const rootReducer = combineReducers({
     main: MainReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
     rthkNews: rthkNewsReducer,
     commericalRadioNews: commericalRadioNewsReducer,
     weatherWarning: weatherWarningReducer,
+    notification: notificationReducer,
 })

@@ -29,53 +29,12 @@ console.ignoredYellowBox = ['Setting a timer'];
 //     //app is open/resumed because user clicked banner
 //   }
 // });
-// const storeName = "@SouthTransportABT"
-// const fcmTokenKey = "fcmToken"
-// const isRefreshedKey = "isRefreshed"
 
-// FCM.getFCMToken().then(async token => {
-//   console.log("fcm token", token)
-//   try {
-//     const storedFcmToken = await AsyncStorage.getItem(`${storeName}:${fcmTokenKey}`);
-//     if (storedFcmToken && !isEmpty(storedFcmToken)) {
-//       console.log("stored fcm token", storedFcmToken);
-
-//       // If token is different from stored token, store it and set isRefreshed
-//       if (!isEqual(storedFcmToken, token)) {
-//         await AsyncStorage.setItem(`${storeName}:${fcmTokenKey}`, token);
-//         await AsyncStorage.setItem(`${storeName}:${isRefreshed}`, true);
-//         checkAndSendTokenToServer()
-//       }
-//     }
-
-//     await AsyncStorage.setItem(`${storeName}:${fcmTokenKey}`, token);
-//     await AsyncStorage.setItem(`${storeName}:${isRefreshed}`, true);
-//     checkAndSendTokenToServer()
-//   } catch (error) {
-//   }
-// });
-
-// checkAndSendTokenToServer = async () => {
-//   console.log("checkAndSendTokenToServer")
-//   try {
-//     const isRefreshed = await AsyncStorage.getItem(`${storeName}:${isRefreshed}`);
-//     if (isRefreshed !== null) {
-//       if (isRefreshed) {
-//         console.log("send token to server")
-//         await AsyncStorage.setItem(`${storeName}:${isRefreshed}`, false);
-//       }
-//     }
-//   }
-//   catch (errr) {
-//   }
-// }
-// checkAndSendTokenToServer();
-
-AppInstall.initialize().then((installId) => {
-  console.log('installId', installId);
-  PushNotification.getAndCheckToken(installId);
-})
-
+const initApp = () => {
+  AppInstall.initialize().then((installId) => {
+    PushNotification.getAndCheckToken(installId);
+  })
+}
 
 Promise.resolve(Navigation.isAppLaunched())
   .then(appLaunched => {
@@ -91,9 +50,7 @@ function startApp() {
 
   registerScreens(store, Provider);
 
-  AppInstall.initialize().then((installId) => {
-    console.log('installId', installId);
-  })
+  initApp();
 
   Navigation.startSingleScreenApp({
     screen: {

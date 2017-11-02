@@ -5,10 +5,13 @@ import { epics as rthkNewsEpics } from "./screens/RTHKNews"
 import { epics as commericalRadioEpics } from "./screens/CommericalRadioNews"
 import { epics as weatherWarningEpics } from "./screens/WeatherWarning"
 
+import fetchNotificationEpics from './modules/notification/epics';
+
 export const rootEpic = combineEpics(
     tunnelTimeEpics,
     transportDepartmentNewsEpics,
     rthkNewsEpics,
     commericalRadioEpics,
     weatherWarningEpics,
+    fetchNotificationEpics,
 );

@@ -26,7 +26,7 @@ class Header extends Component {
                                 <Icon name="timetable" style={styles.button} />
                             </View>
                         </Button>
-                        <Menu />
+                        <Menu navigator={this.props.navigator}/>
                     </View>
                 </View>
             </View>

@@ -63,7 +63,7 @@ class Main extends Component {
             <MenuContext>
                 <View style={styles.contentContainer}>
                     <View style={styles.contentContainer}>
-                        <Header />
+                        <Header navigator={this.props.navigator}/>
                         <ScrollableTabView
                             initialPage={this.props.currTab}
                             renderTabBar={
