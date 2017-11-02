@@ -6,7 +6,7 @@ import {
 } from "react-native"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Button from "./Button"
-import FacebookButton from "./FacebookButton"
+import Menu from './Menu';
 
 class Header extends Component {
     state = {}
@@ -26,11 +26,7 @@ class Header extends Component {
                                 <Icon name="timetable" style={styles.button} />
                             </View>
                         </Button>
-                        <FacebookButton pageId={"southtransport"}>
-                            <View style={styles.buttonContainer}>
-                                <Icon name="facebook-box" style={styles.button} />
-                            </View>
-                        </FacebookButton>
+                        <Menu />
                     </View>
                 </View>
             </View>

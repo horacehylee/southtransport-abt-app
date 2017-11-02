@@ -9,6 +9,8 @@ import {
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 
+import { MenuContext } from 'react-native-popup-menu';
+
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import DefaultTabBar from "./../../modules/tabBar/DefaultTabBar"
 import Header from "./../../components/Header"
@@ -58,28 +60,30 @@ class Main extends Component {
 
     render() {
         return (
-            <View style={styles.contentContainer}>
+            <MenuContext>
                 <View style={styles.contentContainer}>
-                    <Header />
-                    <ScrollableTabView
-                        initialPage={this.props.currTab}
-                        renderTabBar={
-                            () => (<DefaultTabBar
-                                textStyle={styles.tabButtonText}
-                                activeTextColor={Theme.primary}
-                                backgroundColor={"white"}
-                                underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
-                        }
-                        onChangeTab={this.onChangeTab}
-                        locked={true}
-                    >
-                        <RoadCondition tabLabel="路況" ref={this.addChildTab(0)} />
-                        <RoadPhotos tabLabel="實景" ref={this.addChildTab(1)} />
-                        <Notices tabLabel="消息" navigator={this.props.navigator} ref={this.addChildTab(2)} />
-                        <Notifications tabLabel="通知" ref={this.addChildTab(3)} />
-                    </ScrollableTabView>
-                </View>
-            </View >
+                    <View style={styles.contentContainer}>
+                        <Header />
+                        <ScrollableTabView
+                            initialPage={this.props.currTab}
+                            renderTabBar={
+                                () => (<DefaultTabBar
+                                    textStyle={styles.tabButtonText}
+                                    activeTextColor={Theme.primary}
+                                    backgroundColor={"white"}
+                                    underlineStyle={{ height: 4, backgroundColor: Theme.primary }} />)
+                            }
+                            onChangeTab={this.onChangeTab}
+                            locked={true}
+                        >
+                            <RoadCondition tabLabel="路況" ref={this.addChildTab(0)} />
+                            <RoadPhotos tabLabel="實景" ref={this.addChildTab(1)} />
+                            <Notices tabLabel="消息" navigator={this.props.navigator} ref={this.addChildTab(2)} />
+                            <Notifications tabLabel="通知" ref={this.addChildTab(3)} />
+                        </ScrollableTabView>
+                    </View>
+                </View >
+            </MenuContext>
         )
     }
 }
@@ -116,7 +120,7 @@ const styles = StyleSheet.create({
     },
     padding: {
         marginBottom: 8,
-    }
+    },
 });
 
 
