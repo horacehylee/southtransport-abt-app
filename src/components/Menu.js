@@ -3,6 +3,7 @@ import {
     StyleSheet,
     View,
     Text,
+    Linking,
 } from "react-native"
 
 import {
@@ -17,6 +18,22 @@ import { OpenFbPage } from './FacebookButton';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Button from "./Button"
 
+import isEmpty from "lodash/isEmpty"
+
+const OpenInstagramPage = (pageId) => {
+    if (isEmpty(pageId))
+        return
+    const url = `https://instagram.com/_u/${pageId}`
+    Linking.openURL(url);
+}
+
+const OpenTelegram = (pageId) => {
+    if (isEmpty(pageId))
+        return;
+    const url = `https://telegram.me/${pageId}`;
+    Linking.openURL(url);
+}
+
 class MenuWrapper extends Component {
 
     menuOptions = [
@@ -26,9 +43,11 @@ class MenuWrapper extends Component {
         },
         {
             title: '南交IG',
+            onSelect: () => OpenInstagramPage('hksouthtransport'),
         },
         {
             title: '南交TG',
+            onSelect: () => OpenTelegram('hksouthtransport'),
         },
         {
             title: '設定',
