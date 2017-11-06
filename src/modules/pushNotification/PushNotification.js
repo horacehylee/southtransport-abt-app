@@ -3,6 +3,7 @@ import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult,
 import isEmpty from "lodash/isEmpty"
 import isEqual from "lodash/isEqual"
 
+import axios from 'axios';
 import Params from './../../params';
 
 const storeName = Params.storeName;
