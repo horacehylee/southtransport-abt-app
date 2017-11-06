@@ -3,6 +3,9 @@ import Params from './../../../params';
 
 import isEmpty from "lodash/isEmpty"
 
+import SettingsApi from './SettingsApi';
+import AppInstall from './../../../modules/app-install/AppInstall';
+
 const storeName = Params.storeName;
 const settingsStorageKey = Params.settingsKey;
 const settingsStoragePath = `${storeName}:${settingsStorageKey}`;
@@ -11,11 +14,15 @@ const apiPath = Params.apiPath;
 const defaultSettings = Params.defaultSettings;
 
 class SettingsStorage {
-    static init() {
+    static init(installId) {
         return AsyncStorage.getItem(settingsStoragePath).then((settingsJson) => {
+            // set to default settings
             if (isEmpty(settingsJson)) {
                 const defaultSettingsJson = JSON.stringify(defaultSettings);
                 return AsyncStorage.setItem(settingsStoragePath, defaultSettingsJson);
+            } else {
+                const settingsObj = JSON.parse(settingsJson);
+                return SettingsApi.update(installId, settingsObj);
             }
         })
     }
@@ -38,11 +45,16 @@ class SettingsStorage {
                 return Promise.resolve(settingsObjClone);
             }).then((updatedSettingsObj) => {
                 const updatedSettingsJson = JSON.stringify(updatedSettingsObj);
-                return AsyncStorage.setItem(settingsStoragePath, updatedSettingsJson).then(() => {
-                    return Promise.resolve(updatedSettingsObj);
-                });
+                SettingsApi.update(AppInstall.getInstallId(), updatedSettingsObj)
+                return AsyncStorage.setItem(settingsStoragePath, updatedSettingsJson)
+                    .then(() => {
+                        return Promise.resolve(updatedSettingsObj);
+                    });
             }).then((updatedSettingsObj) => {
                 return Promise.resolve(updatedSettingsObj);
+            }).catch((err) => {
+                console.log(err)
+                throw err;
             })
     }
 }

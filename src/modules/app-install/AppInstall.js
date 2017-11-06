@@ -29,10 +29,10 @@ class AppInstall {
     static _installId;
 
     static getInstallId() {
-        if (isEmpty(_installId)) {
+        if (isEmpty(this._installId)) {
             throw new Error('install id not defined yet');
         }
-        return _installId;
+        return this._installId;
     }
 
     static initialize() {
@@ -54,6 +54,7 @@ class AppInstall {
                 console.log(appInstallJson);
                 const installObj = JSON.parse(appInstallJson);
                 const installId = getInstallIdFromInstallObj(installObj);
+                this._installId = installId;
                 return Promise.resolve(installId);
             }
         })

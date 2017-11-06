@@ -34,7 +34,7 @@ console.ignoredYellowBox = ['Setting a timer'];
 const initApp = () => {
   AppInstall.initialize().then((installId) => {
     PushNotification.getAndCheckToken(installId);
-    SettingsStorage.init();
+    SettingsStorage.init(installId);
   })
 }
 
@@ -56,8 +56,8 @@ function startApp() {
 
   Navigation.startSingleScreenApp({
     screen: {
-      screen: 'abt.main', // unique ID registered with Navigation.registerScreen
-      // screen: 'abt.settings'
+      // screen: 'abt.main', // unique ID registered with Navigation.registerScreen
+      screen: 'abt.settings'
     },
   })
 }
