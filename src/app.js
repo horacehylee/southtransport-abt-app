@@ -13,6 +13,7 @@ import isEqual from "lodash/isEqual"
 
 import AppInstall from './modules/app-install/AppInstall';
 import PushNotification from './modules/pushNotification/PushNotification';
+import SettingsStorage from './screens/Settings/services/SettingsStorage';
 
 console.ignoredYellowBox = ['Setting a timer'];
 
@@ -33,6 +34,7 @@ console.ignoredYellowBox = ['Setting a timer'];
 const initApp = () => {
   AppInstall.initialize().then((installId) => {
     PushNotification.getAndCheckToken(installId);
+    SettingsStorage.init();
   })
 }
 
@@ -55,6 +57,7 @@ function startApp() {
   Navigation.startSingleScreenApp({
     screen: {
       screen: 'abt.main', // unique ID registered with Navigation.registerScreen
+      // screen: 'abt.settings'
     },
   })
 }

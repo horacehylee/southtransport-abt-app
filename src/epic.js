@@ -6,6 +6,7 @@ import { epics as commericalRadioEpics } from "./screens/CommericalRadioNews"
 import { epics as weatherWarningEpics } from "./screens/WeatherWarning"
 
 import fetchNotificationEpics from './modules/notification/epics';
+import settingsEpics from './screens/Settings/epics';
 
 export const rootEpic = combineEpics(
     tunnelTimeEpics,
@@ -14,4 +15,5 @@ export const rootEpic = combineEpics(
     commericalRadioEpics,
     weatherWarningEpics,
     fetchNotificationEpics,
+    settingsEpics,
 );
