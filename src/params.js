@@ -7,6 +7,8 @@ class Params {
 
     static apiPath = 'https://us-central1-hksouthtransport-1a188.cloudfunctions.net/api';
 
+    static timetableUrl = 'https://hkabdtunnel.github.io/schedules/list.html';
+
     static defaultSettings = {
         notification: {
             on: true,

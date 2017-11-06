@@ -104,7 +104,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, ownProps) => {
     let settingsState = state.get("settings");
-    console.log('mapStateToProps', settingsState.toJS())
     return {
         loading: settingsState.get("loading"),
         settings: settingsState.get("settings").toJS(),

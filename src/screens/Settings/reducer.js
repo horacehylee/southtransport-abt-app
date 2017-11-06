@@ -25,7 +25,6 @@ export default reducer = (state = initialState, action) => {
             return state
                 .set("loading", true)
         case actionTypes.LOAD_SETTINGS_FULFILLED:
-            console.log('action.payload', action.payload)
             return state
                 .set('loading', false)
                 .set('settings', fromJS(action.payload))

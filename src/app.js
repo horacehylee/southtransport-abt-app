@@ -6,11 +6,6 @@ import { Theme } from "./theme"
 import { Provider } from 'react-redux';
 import { configureStore } from "./store"
 
-import { AsyncStorage } from 'react-native';
-import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
-import isEmpty from "lodash/isEmpty"
-import isEqual from "lodash/isEqual"
-
 import AppInstall from './modules/app-install/AppInstall';
 import PushNotification from './modules/pushNotification/PushNotification';
 import SettingsStorage from './screens/Settings/services/SettingsStorage';
@@ -56,8 +51,7 @@ function startApp() {
 
   Navigation.startSingleScreenApp({
     screen: {
-      // screen: 'abt.main', // unique ID registered with Navigation.registerScreen
-      screen: 'abt.settings'
+      screen: 'abt.main', // unique ID registered with Navigation.registerScreen
     },
   })
 }

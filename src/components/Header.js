@@ -3,13 +3,20 @@ import {
     StyleSheet,
     View,
     Text,
+    Linking,
 } from "react-native"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 import Button from "./Button"
 import Menu from './Menu';
 
+import Params from './../params';
+
 class Header extends Component {
     state = {}
+
+    timetableClicked = () => {
+        Linking.openURL(Params.timetableUrl)
+    }
 
     render() {
         return (
@@ -21,12 +28,12 @@ class Header extends Component {
                         </Text>
                     </View>
                     <View style={styles.rightContainer}>
-                        <Button>
+                        <Button onPress={this.timetableClicked}>
                             <View style={styles.buttonContainer}>
                                 <Icon name="timetable" style={styles.button} />
                             </View>
                         </Button>
-                        <Menu navigator={this.props.navigator}/>
+                        <Menu navigator={this.props.navigator} />
                     </View>
                 </View>
             </View>
