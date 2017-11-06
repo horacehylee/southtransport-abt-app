@@ -9,7 +9,7 @@ export const parseNotification = (jObject) => {
             {
                 key: i,
                 title: object.title,
-                details: object.details,
+                details: object.description,
                 date: moment(object.postDate, "YYYY-MM-DDTHH:mm:ss").tz("Asia/Shanghai"),
             }
         ))
