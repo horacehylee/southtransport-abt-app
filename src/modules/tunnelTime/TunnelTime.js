@@ -31,6 +31,10 @@ class TunnelTime extends Component {
         })
     }
 
+    componentWillUnmount() {
+        this.props.actions.pollStopJourneyTime();
+    }
+
     state = {
         showing: true,
     }

@@ -23,6 +23,7 @@ const fetchJourneyTimeEpic = (action$, _, { http }) =>
                 .map(jObject => parseJourneyTime(jObject[1]))
                 .map(payload => actions.fetchJourneyTimeFulfilled(payload))
                 .takeUntil(action$.ofType(actionTypes.FETCH_JOURNEY_TIME_CANCELLED))
+                .takeUntil(action$.ofType(actionTypes.POLL_STOP_JOURNEY_TIME))
                 .catch(err => Observable.of(actions.fetchJourneyTimeError(err)))
         );
 
