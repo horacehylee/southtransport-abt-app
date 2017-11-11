@@ -66,6 +66,7 @@ class Main extends Component {
                         <Header navigator={this.props.navigator}/>
                         <ScrollableTabView
                             initialPage={this.props.currTab}
+                            page={this.props.currTab}
                             renderTabBar={
                                 () => (<DefaultTabBar
                                     textStyle={styles.tabButtonText}

@@ -149,6 +149,7 @@ dependencies {
     compile project(':react-native-vector-icons')
     compile project(':react-native-navigation')
     compile project(':react-native-config')
+    compile project(':react-native-firebase-crash-report')
     compile(project(':react-native-maps')){
         exclude group: 'com.google.android.gms', module: 'play-services-base'
         exclude group: 'com.google.android.gms', module: 'play-services-maps'
@@ -163,6 +164,9 @@ dependencies {
         force = true;
     }
     compile ('com.google.firebase:firebase-core:10.0.1') {
+        force = true;
+    }
+    compile ('com.google.firebase:firebase-crash:10.0.1') {
         force = true;
     }
     compile ('com.google.firebase:firebase-messaging:10.0.1') {

@@ -22,8 +22,9 @@ class TunnelTime extends Component {
         this.props.actions.pollStartJourneyTime();
         AppState.addEventListener('change', (state) => {
             if (state === 'active') {
-                if (this.state.showing)
+                if (this.state.showing) {
                     this.props.actions.pollStartJourneyTime();
+                }
             }
             if (state === 'background') {
                 this.props.actions.pollStopJourneyTime();

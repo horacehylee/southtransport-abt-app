@@ -19,9 +19,12 @@ const abtRegion = {
 const range = 0.002
 
 class AbtMap extends Component {
+    state = {
+        needReset: false,
+    }
+
     constructor(props) {
         super(props)
-        this.state = { needReset: false };
     }
 
     reset() {
@@ -29,7 +32,10 @@ class AbtMap extends Component {
     }
 
     onRegionChangeComplete = (region) => {
-        this.setState({ needReset: !this.withinRange(region, abtRegion) });
+        const needReset = !this.withinRange(region, abtRegion);
+        if (this.state.needReset !== needReset) {
+            this.setState({ needReset: needReset });
+        }
     }
 
     withinRange(region, abtRegion) {

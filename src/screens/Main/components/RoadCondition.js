@@ -7,35 +7,24 @@ import AbtMap from "./../../../modules/map/Map"
 import { TunnelTime } from "./../../../modules/tunnelTime"
 
 export class RoadCondition extends Component {
-    state = {
-        tunnelTime: null,
-    }
 
     tabWillBeVisible() {
-        let tunnelTime = this.state.tunnelTime.getWrappedInstance()
-        if (tunnelTime && tunnelTime.tabWillBeVisible) {
-            tunnelTime.tabWillBeVisible()
+        if (this.tunnelTime && this.tunnelTime.tabWillBeVisible) {
+            this.tunnelTime.tabWillBeVisible()
         }
     }
 
     tabWillBeHidden() {
-        let tunnelTime = this.state.tunnelTime.getWrappedInstance()
-        if (tunnelTime && tunnelTime.tabWillBeHidden) {
-            tunnelTime.tabWillBeHidden()
+        if (this.tunnelTime && this.tunnelTime.tabWillBeHidden) {
+            this.tunnelTime.tabWillBeHidden()
         }
-    }
-
-    addTunnelTime = (instance) => {
-        this.setState({
-            tunnelTime: instance
-        })
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <AbtMap />
-                <TunnelTime ref={this.addTunnelTime} />
+                {<AbtMap />}
+                <TunnelTime ref={ref => this.tunnelTime = ref} />
             </View>
         );
     }

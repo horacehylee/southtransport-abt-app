@@ -11,14 +11,9 @@ import PushNotification from './modules/pushNotification/PushNotification';
 import SettingsStorage from './screens/Settings/services/SettingsStorage';
 
 import FCM, { FCMEvent } from 'react-native-fcm';
+import { changeTab } from './screens/Main/actions';
 
 console.ignoredYellowBox = ['Setting a timer'];
-
-FCM.on(FCMEvent.Notification, async (notif) => {
-  if (notif.opened_from_tray) {
-    console.log("notif opened from tray", notif)
-  }
-});
 
 const initApp = () => {
   AppInstall.initialize().then((installId) => {
@@ -48,4 +43,12 @@ function startApp() {
       screen: 'abt.main', // unique ID registered with Navigation.registerScreen
     },
   })
+
+  FCM.on(FCMEvent.Notification, (notif) => {
+    if (notif.opened_from_tray) {
+      if (notif.icon && notif.large_icon) {
+        store.dispatch(changeTab(null, 3))
+      }
+    }
+  });
 }

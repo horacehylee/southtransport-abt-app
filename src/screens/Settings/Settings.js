@@ -38,6 +38,11 @@ class Settings extends Component {
         this.props.actions.updateSettings(groupKey, itemKey, value);
     }
 
+    onSendTestNotificationPress = () => {
+        console.log('onSendTestNotificationPress')
+        this.props.actions.sendTestNotification();
+    }
+
     addGroupToArray = (array, settingsObj, settingsOpt) => {
         Object.entries(settingsObj).forEach(([groupKey, groupObj], i) => {
             const groupOpt = settingsOpt[groupKey];
@@ -80,6 +85,14 @@ class Settings extends Component {
             <View>
                 <SettingsList borderColor='#d6d5d9'>
                     {settingsArray}
+                    <SettingsList.Item
+                        hasNavArrow={false}
+                        itemWidth={itemHeight}
+                        titleStyle={styles.itemTitle}
+                        hasSwitch={false}
+                        onPress={this.onSendTestNotificationPress}
+                        title={'通知測試'}
+                    />
                 </SettingsList>
             </View>
         )

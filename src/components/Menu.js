@@ -60,11 +60,11 @@ class MenuWrapper extends Component {
             }
         },
         {
-            title: '關於本程式',
+            title: '使用政策',
             onSelect: () => {
                 this.props.navigator.push({
                     screen: 'abt.about',
-                    title: '關於本程式',
+                    title: '使用政策',
                     animationType: "fade",
                 })
             }

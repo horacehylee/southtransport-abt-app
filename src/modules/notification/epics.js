@@ -19,9 +19,7 @@ const fetchNotification = (action$, _, { http }) =>
     action$.ofType(actionTypes.FETCH_NOTIFICATION)
         .switchMap(action =>
             ajax.get(`${apiPath}/notifications`)
-                // .do(response => console.log(response.response))
                 .map(response => response.response)
-                .do((jObject) => console.log(jObject))
                 .map(jObject => parseNotification(jObject))
                 .map(payload => actions.fetchFulfilled(payload))
                 .takeUntil(action$.ofType(actionTypes.FETCH_NOTIFICATION_CANCELLED))

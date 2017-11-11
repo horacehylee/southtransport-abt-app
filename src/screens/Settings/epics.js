@@ -11,6 +11,8 @@ import { Observable } from "rxjs/Observable"
 import { ajax } from 'rxjs/observable/dom/ajax';
 
 import SettingsStorage from './services/SettingsStorage';
+import SettingsApi from './services/SettingsApi';
+import AppInstall from './../../modules/app-install/AppInstall';
 
 import Params from './../../params';
 const apiPath = Params.apiPath;
@@ -35,7 +37,18 @@ const loadSettings = (action$, _) =>
                 .catch(err => Observable.of(actions.loadSettingsError(err)))
         );
 
+const sendTestPushNotification = (action$, _, { http }) =>
+    action$.ofType(actionTypes.SEND_TEST_NOTIFICATION)
+        .switchMap(action =>
+            Observable.fromPromise(SettingsApi.sendTestNotification(AppInstall.getInstallId()))
+                .map(payload => actions.sendTestNotificationFulfilled(payload))
+                .catch(err => actions.sendTestNotificationError(err))
+        // .do(response => console.log(response))
+        // .catch(err => console.log('error', err))
+        );
+
 export default combineEpics(
     updateSettings,
     loadSettings,
+    sendTestPushNotification,
 )

@@ -6,14 +6,17 @@ import {
     FlatList,
     RefreshControl,
     ActivityIndicator,
+    WebView,
 } from 'react-native';
 
 class About extends Component {
 
     render() {
         return (
-            <View>
-            </View>
+            <WebView
+                source={{ uri: 'https://hksouthtransport-1a188.firebaseapp.com/#/privacy-policy' }}
+                javaScriptEnabled={true}
+            />
         )
     }
 }

@@ -40,3 +40,17 @@ export const updateSettingsError = (err) => ({
     type: actionTypes.UPDATE_SETTINGS_ERROR,
     payload: err,
 })
+
+export const sendTestNotification = () => ({
+    type: actionTypes.SEND_TEST_NOTIFICATION,
+})
+
+export const sendTestNotificationFulfilled = (payload) => ({
+    type: actionTypes.SEND_TEST_NOTIFICATION_FULFILLED,
+    payload: payload,
+})
+
+export const sendTestNotificationError = (err) => ({
+    type: actionTypes.SEND_TEST_NOTIFICATION_ERROR,
+    payload: err
+})

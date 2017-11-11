@@ -57,6 +57,7 @@ class PushNotification {
     }
 
     static _sendTokenToServer(installId, token) {
+        console.log('send token to server')
         return updatePushTokenApi(installId, token).then((response) => {
             const pushTokenObj = response.data.pushToken;
             if (!pushTokenObj) {

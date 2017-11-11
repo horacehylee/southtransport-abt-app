@@ -13,6 +13,7 @@ const callAppInstallApi = () => {
     return axios.post(`${apiPath}/app/install`, {
         platform: "android"
     }).then((response) => {
+        console.log('appInstall', response, response.status);
         console.log(response.data);
         if (response.status != 200) {
             return Promise.reject(`status code(${response.status}) is not 200`);
