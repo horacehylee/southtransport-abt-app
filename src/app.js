@@ -10,21 +10,15 @@ import AppInstall from './modules/app-install/AppInstall';
 import PushNotification from './modules/pushNotification/PushNotification';
 import SettingsStorage from './screens/Settings/services/SettingsStorage';
 
+import FCM, { FCMEvent } from 'react-native-fcm';
+
 console.ignoredYellowBox = ['Setting a timer'];
 
-// FCM.subscribeToTopic('global');
-// this shall be called regardless of app state: running, background or not running. 
-// Won't be called when app is killed by user in iOS
-// FCM.on(FCMEvent.Notification, async (notif) => {
-//   console.log("notif from global", notif)
-//   // there are two parts of notif. notif.notification contains the notification payload, notif.data contains data payload
-//   if (notif.local_notification) {
-//     //this is a local notification
-//   }
-//   if (notif.opened_from_tray) {
-//     //app is open/resumed because user clicked banner
-//   }
-// });
+FCM.on(FCMEvent.Notification, async (notif) => {
+  if (notif.opened_from_tray) {
+    console.log("notif opened from tray", notif)
+  }
+});
 
 const initApp = () => {
   AppInstall.initialize().then((installId) => {
